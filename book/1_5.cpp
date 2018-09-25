@@ -69,11 +69,12 @@ int main()
 #endif
     int n;
     double *a = new double[n];
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++) {
-        scanf("%lf", &a[i]);
+    while (scanf("%d", &n) != EOF) {
+        for (int i = 0; i < n; i++) {
+            scanf("%lf", &a[i]);
+        }
+        printf("%lf\n", maxgap(n, a));
     }
-    printf("%lf\n", maxgap(n, a));
 
     return 0;
 }
