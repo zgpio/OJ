@@ -24,10 +24,7 @@ void mergesort(T *a, int left, int right)
 int main()
 {
     int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int find = 9;
-    int i, j;
-    mergesort(a, find, 0, 9, i, j);
-    std::cout << i << j << std::endl;
+    mergesort(a, 0, 9);
 
     return 0;
 }
