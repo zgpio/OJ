@@ -8,14 +8,12 @@ using namespace std;
 template <typename T>
 void mergesort(T *a, int left, int right)
 {
-    if(left<right)
-    {
-        int j=(int)sqrt(right-left+1);
-        if(j>1)
-        {
-            for(int i=0;i<j;i++)
-                mergesort(a, left+i*j, left+(i+1)*j-1);
-            mergesort(a, left+j*j, right);
+    if (left < right) {
+        int j = (int)sqrt(right - left + 1);
+        if (j > 1) {
+            for (int i = 0; i < j; i++)
+                mergesort(a, left + i * j, left + (i + 1) * j - 1);
+            mergesort(a, left + j * j, right);
         }
         mergeall(a, left, right);
     }
