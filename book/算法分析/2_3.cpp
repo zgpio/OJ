@@ -1,7 +1,9 @@
-#include <stdio.h>
 #include <string.h>
 #include <algorithm>
 #include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
 using namespace std;
 
@@ -29,11 +31,23 @@ int binarySearch(T a[], const T &x, int left, int right, int &i, int &j)
 
 int main()
 {
-    int a[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int find = 9;
+    srand(time(NULL));
+    int low = 9, high = 19;
+    int rnum = rand() % (high - low + 1) + low;
+    int *arr = new int[rnum];
+    for (int i = 0; i < rnum; ++i) {
+        arr[i] = rand() % (100 - 0 + 1) + 0;
+    }
+    sort(arr, arr + rnum);
+
+    for (int i = 0; i < rnum; ++i) {
+        std::cout << i << ":" << arr[i] << "  ";
+    }
+    cout << endl;
+    int find = 50;
     int i, j;
-    binarySearch(a, find, 0, 9, i, j);
-    std::cout << i << j << std::endl;
+    binarySearch(arr, find, 0, 9, i, j);
+    std::cout << i << " " << j << std::endl;
 
     return 0;
 }
