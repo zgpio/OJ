@@ -19,7 +19,7 @@ int subNumber(char n[], int start, int end)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input", "rt", stdin);
+    freopen("./input/input", "rt", stdin);
 #endif
     // e.g.
     // n[0] n[1] n[2] n[3]

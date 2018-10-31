@@ -26,7 +26,7 @@ int qpow(int A, int n, int mod)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input.txt", "rt", stdin);
+    freopen("./input/1097.txt", "rt", stdin);
 #endif
     int n, m;
 
