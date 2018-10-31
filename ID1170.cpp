@@ -16,7 +16,7 @@ bool approximatelyEqual(float a, float b, float epsilon)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input.txt", "rt", stdin);
+    freopen("./input/1170", "rt", stdin);
 #endif
     int T;
     std::cin >> T;
@@ -53,11 +53,3 @@ int main()
 
     return 0;
 }
-/*
-5
-+ 1 2
-- 1 2
-* 1 2
-/ 0.015 1
-* 9999 9999
- */

@@ -33,7 +33,7 @@ void dfs(int need, int x, int y, int eat)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("./input/input1078.txt", "rt", stdin);
+    freopen("./input/1078", "rt", stdin);
 #endif
     int k;
     while (cin >> n >> k && !(n == -1 && k == -1)) {
