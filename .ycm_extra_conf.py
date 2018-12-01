@@ -1,33 +1,3 @@
-# This file is NOT licensed under the GPLv3, which is the license for the rest
-# of YouCompleteMe.
-#
-# Here's the license text for this file:
-#
-# This is free and unencumbered software released into the public domain.
-#
-# Anyone is free to copy, modify, publish, use, compile, sell, or
-# distribute this software, either in source code form or as a compiled
-# binary, for any purpose, commercial or non-commercial, and by any
-# means.
-#
-# In jurisdictions that recognize copyright laws, the author or authors
-# of this software dedicate any and all copyright interest in the
-# software to the public domain. We make this dedication for the benefit
-# of the public at large and to the detriment of our heirs and
-# successors. We intend this dedication to be an overt act of
-# relinquishment in perpetuity of all present and future rights to this
-# software under copyright law.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-# OTHER DEALINGS IN THE SOFTWARE.
-#
-# For more information, please refer to <http://unlicense.org/>
-
 from distutils.sysconfig import get_python_inc
 import platform
 import os
@@ -35,16 +5,17 @@ import subprocess
 import ycm_core
 
 DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
-DIR_OF_THIRD_PARTY = os.path.join( DIR_OF_THIS_SCRIPT, 'third_party' )
+# DIR_OF_THIRD_PARTY = os.path.join( DIR_OF_THIS_SCRIPT, 'third_party' )
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
+# ref to http://clang.llvm.org/docs/UsersManual.html#command-line-options
 flags = [
 '-Wall',
 '-Wextra',
-'-Werror',
+#'-Werror',  #  Turn warnings into errors.
 '-Wno-long-long',
 '-Wno-variadic-macros',
 '-fexceptions',
@@ -65,14 +36,19 @@ flags = [
 # 'cpp/llvm/tools/clang/include',
 # '-I',
 # 'cpp/ycm/ClangCompleter',
-'-isystem',
-'C:/Program Files (x86)/CodeBlocks/MinGW/lib/gcc/mingw32/5.1.0/include',
-'-isystem',
-'C:/Program Files (x86)/CodeBlocks/MinGW/lib/gcc/mingw32/5.1.0/include/c++/mingw32/',
-'-isystem',
-'C:/Program Files (x86)/CodeBlocks/MinGW/lib/gcc/mingw32/5.1.0/include/c++',
-'-isystem',
-'C:/Program Files (x86)/CodeBlocks/MinGW/lib/gcc/mingw32/5.1.0/include-fixed'
+# TODO header completion
+#'-isystem',
+#'C:/Program Files/LLVM/x86_64-w64-mingw32/include',
+#'-isystem',
+#'C:/Users/zgp/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc/LocalState/rootfs/usr/include/c++/7',
+#'-isystem',
+#'C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include',
+#'-isystem',
+#'C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32',
+#'-isystem',
+#'C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++',
+#'-isystem',
+#'C:/Program Files/LLVM/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed',
 ]
 
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
@@ -161,25 +137,3 @@ def GetStandardLibraryIndexInSysPath( sys_path ):
     if os.path.isfile( os.path.join( path, 'os.py' ) ):
       return sys_path.index( path )
   raise RuntimeError( 'Could not find standard library path in Python path.' )
-
-
-def PythonSysPath( **kwargs ):
-  sys_path = kwargs[ 'sys_path' ]
-  for folder in os.listdir( DIR_OF_THIRD_PARTY ):
-    if folder == 'python-future':
-      folder = os.path.join( folder, 'src' )
-      sys_path.insert( GetStandardLibraryIndexInSysPath( sys_path ) + 1,
-                       os.path.realpath( os.path.join( DIR_OF_THIRD_PARTY,
-                                                       folder ) ) )
-      continue
-
-    if folder == 'cregex':
-      interpreter_path = kwargs[ 'interpreter_path' ]
-      major_version = subprocess.check_output( [
-        interpreter_path, '-c', 'import sys; print( sys.version_info[ 0 ] )' ]
-      ).rstrip().decode( 'utf8' )
-      folder = os.path.join( folder, 'regex_{}'.format( major_version ) )
-
-    sys_path.insert( 0, os.path.realpath( os.path.join( DIR_OF_THIRD_PARTY,
-                                                        folder ) ) )
-  return sys_path
