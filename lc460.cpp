@@ -12,7 +12,6 @@
 using namespace std;
 //#include <hash_map>
 // using namespace __gnu_cxx;
-
 typedef struct {
     int v, fre;
     deque<int>::iterator pos;
@@ -45,7 +44,7 @@ public:
             if (p != fre.end())
                 p->second.push_back(key);
             else
-                fre[ofre + 1] = deque<int>(key);  // insert a new
+                fre[ofre + 1] = deque<int>{key};  // insert a new
             ptr->second.fre++;
             ptr->second.pos = fre[ofre + 1].end() - 1;
 
@@ -78,7 +77,7 @@ public:
         if (p != fre.end())
             p->second.push_back(key);
         else
-            fre[0] = deque<int>(key);
+            fre[0] = deque<int>{key};
         nd.pos = fre[0].end() - 1;
         kv[key] = nd;
         min_fre = 0;
@@ -89,7 +88,6 @@ public:
     }
     void print(string info)
     {
-        return;
         cout << info << endl;
         for (unordered_map<int, node>::iterator Iter = kv.begin();
              Iter != kv.end(); ++Iter) {
@@ -109,8 +107,21 @@ public:
     }
 };
 
-// clang --target=x86_64-pc-mingw32 lc460.cpp
 int main()
+{
+    deque<int> a{1, 2, 3, 4};
+    deque<int>::iterator pos=a.begin()+1;// -> 2
+    deque<int>::iterator p2=a.end()-2;// -> 3
+    a.erase(pos);
+    std::cout << *p2 << std::endl;
+    for (deque<int>::iterator x = a.begin();
+            x != a.end(); ++x) {
+        cout << " " << *x << " ";
+    }
+
+}
+// clang --target=x86_64-pc-mingw32 lc460.cpp
+int tmain()
 {
     // tuple<int, int> a = make_tuple(2, 3);
     // std::cout << get<0>(a) << std::endl;
@@ -129,37 +140,40 @@ int main()
     // assert(obj.get(3) == 3);   // returns 3
     // assert(obj.get(4) == 4);   // returns 4
 
-    LFUCache obj = *new LFUCache(512);
-    ifstream in("./input/lc460");
-    // LFUCache obj = *new LFUCache(105);
-    // ifstream in("./input/lc460_2");
+    // LFUCache obj = *new LFUCache(512);
+    // ifstream in("./input/lc460");
+    LFUCache obj = *new LFUCache(105);
+    ifstream in("./input/lc460_2");
     string filename;
     string line;
-
-    int cnt = 1;
+    int cnt = 0;
     if (in) {
         while (getline(in, line))  // line中不包括每行的换行符
         {
-            cout << cnt++ << ": ";
+            cout << ++cnt << ": ";
             // cout << line << endl;
             int idx = line.find(",");
             int a, b;
-
             const char *p = line.c_str();  // const不能省去！
+            char info[10];
             if (idx < line.length())       // find it
             {
                 sscanf(p, "%d,%d", &a, &b);
                 obj.put(a, b);
+                sprintf(info, "put(%d, %d)", a, b);
+                std::cout << info;
             }
             else {
                 sscanf(p, "%d", &a);
-                cout << obj.get(a);
+                sprintf(info, "get(%d)", a);
+                std::cout << info << " -> " << obj.get(a);
             }
+            if(cnt==559)
+                obj.print("\n---------------");
             std::cout << std::endl;
         }
-        std::cout << "end" << std::endl;
     }
-    else {
-        cout << "no such file" << endl;
-    }
+    else  cout << "no such file" << endl;
+
+    std::cout << "end" << std::endl;
 }
