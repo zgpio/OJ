@@ -14,7 +14,8 @@ using namespace std;
 // using namespace __gnu_cxx;
 typedef struct {
     int v, fre;
-    deque<int>::iterator pos;
+    // NOTE: 迭代器失效问题
+    list<int>::iterator pos;
 } node;
 // struct node {
 //     int k, cnt;
@@ -26,7 +27,7 @@ class LFUCache {
     int len;
     int min_fre;
     unordered_map<int, node> kv;
-    unordered_map<int, deque<int>> fre;
+    unordered_map<int, list<int>> fre;
 
 public:
     LFUCache(int capacity) : len(capacity), min_fre(0) {}
@@ -44,9 +45,9 @@ public:
             if (p != fre.end())
                 p->second.push_back(key);
             else
-                fre[ofre + 1] = deque<int>{key};  // insert a new
+                fre[ofre + 1] = list<int>{key};  // insert a new
             ptr->second.fre++;
-            ptr->second.pos = fre[ofre + 1].end() - 1;
+            ptr->second.pos = --(fre[ofre + 1].end()) ;
 
             // char info[10];
             // sprintf(info, "get(%d):", key);
@@ -58,6 +59,7 @@ public:
 
     void put(int key, int value)
     {
+        if (len==0) return;
         auto ptr = kv.find(key);
         if (ptr != kv.end()) {
             ptr->second.v = value;
@@ -77,8 +79,8 @@ public:
         if (p != fre.end())
             p->second.push_back(key);
         else
-            fre[0] = deque<int>{key};
-        nd.pos = fre[0].end() - 1;
+            fre[0] = list<int>{key};
+        nd.pos = --(fre[0].end());
         kv[key] = nd;
         min_fre = 0;
 
@@ -94,10 +96,10 @@ public:
             cout << Iter->first << " " << Iter->second.v << " "
                  << Iter->second.fre << endl;
         }
-        for (unordered_map<int, deque<int>>::iterator Iter = fre.begin();
+        for (unordered_map<int, list<int>>::iterator Iter = fre.begin();
              Iter != fre.end(); ++Iter) {
             cout << Iter->first << ":" << endl << "  ";
-            for (deque<int>::iterator x = Iter->second.begin();
+            for (list<int>::iterator x = Iter->second.begin();
                  x != Iter->second.end(); ++x) {
                 cout << " " << *x << " ";
             }
@@ -107,7 +109,7 @@ public:
     }
 };
 
-int main()
+int tmain()
 {
     deque<int> a{1, 2, 3, 4};
     deque<int>::iterator pos=a.begin()+1;// -> 2
@@ -121,7 +123,7 @@ int main()
 
 }
 // clang --target=x86_64-pc-mingw32 lc460.cpp
-int tmain()
+int main()
 {
     // tuple<int, int> a = make_tuple(2, 3);
     // std::cout << get<0>(a) << std::endl;
