@@ -27,8 +27,7 @@ T max(int n, T *x)
 double maxgap(int n, double *x)
 {
     double minx = min(n, x), maxx = max(n, x);
-    // 用n-2个等间距点分割区间[minx, maxx],
-    // 产生n-1个桶, 每个桶i中用high[i]和low[i]
+    // 用n-2个等间距点分割区间[minx, maxx], 产生n-1个桶, 每个桶i中用high[i]和low[i]
     // 分别存储分配给桶i的数中的最大数和最小数
     int *count = new int[n - 1];
     double *low = new double[n - 1];
@@ -47,10 +46,8 @@ double maxgap(int n, double *x)
         if (x[i] < low[bucket]) low[bucket] = x[i];
         if (x[i] > high[bucket]) high[bucket] = x[i];
     }
-    // 此时, 除了maxx和minx外的n-2个数被置于n-1个桶中.
-    // 由鸽舍原理即知, 至少有一个桶是空的.
-    // 这意味着最大间隙不会出现在同一个桶中的两个数之间.
-    // 对每一个桶做一次线性扫描即可找出最大间隙.
+    // 此时, 除了maxx和minx外的n-2个数被置于n-1个桶中. 由鸽舍原理即知, 至少有一个桶是空的.
+    // 这意味着最大间隙不会出现在同一个桶中的两个数之间. 对每一个桶做一次线性扫描即可找出最大间隙.
     double res = 0, left = high[0];
     for (int i = 1; i < n - 1; i++) {
         if (count[i]) {
@@ -65,7 +62,7 @@ double maxgap(int n, double *x)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input1_5", "rt", stdin);
+    freopen("input/1_5", "rt", stdin);
 #endif
     int n;
     double *a = new double[n];
@@ -75,6 +72,5 @@ int main()
         }
         printf("%lf\n", maxgap(n, a));
     }
-
     return 0;
 }

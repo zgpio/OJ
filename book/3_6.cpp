@@ -35,7 +35,7 @@ void print(int i, int j)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input3_6", "rt", stdin);
+    freopen("input/3_6", "rt", stdin);
 #endif
     int n;  //共有 n 个站点
     cin >> n;

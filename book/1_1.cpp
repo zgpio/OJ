@@ -19,7 +19,7 @@ int subNumber(char n[], int start, int end)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("./input/input", "rt", stdin);
+    freopen("./input/1_1", "rt", stdin);
 #endif
     // e.g.
     // n[0] n[1] n[2] n[3]
@@ -46,12 +46,11 @@ int main()
                 result[j] += inc;
             }
         }
-        for (i = 0; i < len - 1; i++) {
-            result[0] -= pow(10, len - i - 2) * 9 * (i + 1);
-        }
-        result[0] -= len;
+        for (i = 0; i < len; i++)
+            result[0] -= pow(10, i);
+
         for (i = 0; i < 10; i++) {
-            printf("%lld ", result[i]);  // I64d
+            printf("%4lld ", result[i]);  // I64d
         }
         printf("\n");
     }
