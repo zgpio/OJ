@@ -46,7 +46,7 @@ int ca(char a[])
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input1_2", "rt", stdin);
+    freopen("input/1_2", "rt", stdin);
 #endif
     int n;
     char a[6];  // len<=6
