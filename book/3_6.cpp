@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
-/*
- * 租赁游艇问题
- */
 
+// 租赁游艇问题
 const int N = 1000;
 int r[N][N], m[N][N], s[N][N];
 void dyna(int n)
@@ -37,7 +35,7 @@ int main()
 #ifndef ONLINE_JUDGE
     freopen("input/3_6", "rt", stdin);
 #endif
-    int n;  //共有 n 个站点
+    int n;  // 共有 n 个站点
     cin >> n;
     // TODO 动态申请二维数组
     // 输入上三角矩阵

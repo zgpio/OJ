@@ -22,12 +22,12 @@ int main()
     sort(a, a + k);
 
     int min_sum = 0;
-    int min_mark = 0;
-    while (min_mark < k - 1) {
-        min_sum += a[min_mark] + a[min_mark + 1] - 1;
-        a[min_mark] = a[min_mark] + a[min_mark + 1];
-        a[min_mark + 1] = 0;
-        min_mark++;
+    int left = 0;
+    while (left < k - 1) {
+        min_sum += a[left] + a[left + 1] - 1;
+        a[left] = a[left] + a[left + 1];
+        a[left + 1] = 0;
+        left++;
         sort(a, a + k);
     }
 
@@ -39,7 +39,6 @@ int main()
         b[k - 2] = 0;
         sort(b, b + k);
     }
-    cout << max_sum << " ";
-    cout << min_sum << endl;
+    cout << max_sum << " " << min_sum << endl;
     return 0;
 }

@@ -15,7 +15,7 @@ int subNumber(char n[], int start, int end)
     sscanf(tmp, "%d", &subnum);
     return subnum;
 }
-
+// 统计数字问题
 int main()
 {
 #ifndef ONLINE_JUDGE
