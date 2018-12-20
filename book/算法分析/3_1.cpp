@@ -27,7 +27,7 @@ int LISdyna(int a[], int n)
 int main()
 {
     int a[] = {3, 1, 2, 5, 4, 3, 4, 5, 6};
-    std::cout << "len:" << sizeof(a) / sizeof(a[0]) << std::endl;
+    std::cout << "len: " << sizeof(a) / sizeof(a[0]) << std::endl;
     std::cout << LISdyna(a, sizeof(a) / sizeof(a[0])) << std::endl;
     return 0;
 }

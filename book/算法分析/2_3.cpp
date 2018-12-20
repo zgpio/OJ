@@ -8,6 +8,7 @@
 using namespace std;
 
 // left/right: left/right index
+// 待查元素x
 // i/j: 小于x的最大元素位置i, 大于x的最小元素位置j
 template <typename T>
 int binarySearch(T a[], const T &x, int left, int right, int &i, int &j)
@@ -41,7 +42,7 @@ int main()
     sort(arr, arr + rnum);
 
     for (int i = 0; i < rnum; ++i) {
-        std::cout << i << ":" << arr[i] << "  ";
+        std::cout << i << ": " << arr[i] << "  ";
     }
     cout << endl;
     int find = 50;
