@@ -6,26 +6,25 @@ using namespace std;
 
 int main()
 {
-    ifstream cinfile;
-    cinfile.open("./input/4_9", ios::in);
+    ifstream cin;
+    cin.open("./input/4_9", ios::in);
     int n, k;
-    cinfile >> n >> k;
+    cin >> n >> k;
     int* a = new int[k + 1];
-    for (int i = 0; i < k + 1; ++i) {
-        cinfile >> a[i];
-    }
-    int sum = 0, cnt = 0;
+    for (int i = 0; i < k + 1; ++i) cin >> a[i];
+
+    int left = n, cnt = 0;
     for (int i = 0; i < k + 1; ++i) {
         if (a[i] > n) {
             std::cout << "No Solution" << std::endl;
             return 0;
         }
-        if (sum + a[i] > n) {
+        else if (a[i] > left) {
             cnt++;
-            sum = a[i];
+            left = n - a[i];
         }
         else {
-            sum += a[i];
+            left -= a[i];
         }
     }
     std::cout << cnt << std::endl;

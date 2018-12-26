@@ -5,19 +5,20 @@ using namespace std;
 //头文件algorithm
 // sort(数组名, 数组名+要排序的元素个数) 函数作用: 递增排序
 // reverse(数组名, 数组名+要排序的元素个数) 函数作用: 逆置数组
+// 最优合并问题
 int main()
 {
-    ifstream cinfile;
-    cinfile.open("./input/4_2", ios::in);
+    ifstream cin;
+    cin.open("./input/4_2", ios::in);
     int k;
-    cinfile >> k;
+    cin >> k;
     int* a = new int[k];
     int* b = new int[k];
     for (int i = 0; i < k; i++) {
-        cinfile >> a[i];
+        cin >> a[i];
         b[i] = a[i];
     }
-    cinfile.close();
+    cin.close();
 
     sort(a, a + k);
 

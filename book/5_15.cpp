@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <climits>
 #include <cstring>
 #include <fstream>
 #include <iostream>
@@ -6,7 +7,7 @@ using namespace std;
 
 int n, k;
 int t[100086], s[100086];
-int minc = 1000000;
+int minc = INT_MAX;
 bool ltt(int x, int y) { return x > y; }
 
 inline void dfs(int i, int c)  // 当前费用c, 分配任务{i, ..., n}

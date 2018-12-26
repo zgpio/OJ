@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <algorithm>
+#include <numeric>
 using namespace std;
 
 struct NodeType {
@@ -35,11 +36,9 @@ int doit(int n, int m, int d, int **w, int **c, int *future)
         {
             temp = (struct NodeType *)malloc(sizeof(struct NodeType));
             temp->mark = (int *)malloc((sizeof(int)) * n);
-            temp->preview =
-                future[0] + w[0][i];  //当前已买部件重量+未来最理想重量
+            temp->preview = future[0] + w[0][i];  //当前已买部件重量+未来最理想重量
             temp->now = 0;            //当前考虑买的部件为部件0
-            temp->nowd =
-                c[0][i];  //当前已买部件价格(部件0在供应商i处购买的价格)
+            temp->nowd = c[0][i];  //当前已买部件价格(部件0在供应商i处购买的价格)
             temp->mark[0] = i;  //部件0在供应商i处购买
             temp->next = NULL;
             t->next = temp;
@@ -159,8 +158,7 @@ int main()
         future[i] = *min_element(w[i], w[i]+m);  // 部件i的最小重量
     }
     for (int i = 0; i < n - 1; i++) {
-        future[i] = 0;
-        for (int j = i + 1; j < n; j++) future[i] += future[j];
+        future[i] = std::accumulate(future+i+1, future+n, 0);// 求和, 第三个参数表示求和的初值
     }
     future[n - 1] = 0;
     //购买完部件i后剩余部件的最理想重量
