@@ -1,4 +1,19 @@
 // 最大团问题的迭代回溯法
+#define NoEdge 0
+
+class Clique {
+    int MaxClique(int[]);
+
+private:
+    void iterClique();
+    bool ok(int);
+    int **a,     // 图G的邻接矩阵
+        n,       // G的顶点数
+        *x,      // 当前解
+        *bestx,  // 当前最优解
+        cn,      // 当前顶点数
+        bestn;   // 当前最优解的顶点数
+};
 
 void Clique::iterClique()
 {
@@ -32,14 +47,14 @@ bool Clique::ok(int i)
     return true;
 }
 
-// IterClique 作初始化, 并调用迭代回溯法求解
-int Clique::IterClique(int v[])
+// MaxClique 作初始化, 并调用迭代回溯法求解
+int Clique::MaxClique(int v[])
 {
     x = new int[n + 1];
     cn = 0;
     bestn = 0;
     bestx = v;
-    IterClique();
+    iterClique();
     delete[] x;
     return bestn;
 }

@@ -5,40 +5,43 @@ using namespace std;
 //头文件algorithm
 // sort(数组名, 数组名+要排序的元素个数) 函数作用: 递增排序
 // reverse(数组名, 数组名+要排序的元素个数) 函数作用: 逆置数组
+// 最优合并问题
 int main()
 {
-    ifstream cinfile;
-    cinfile.open("./input/4_2", ios::in);
+    ifstream cin;
+    cin.open("./input/4_2", ios::in);
     int k;
-    cinfile >> k;
+    cin >> k;
     int* a = new int[k];
     int* b = new int[k];
     for (int i = 0; i < k; i++) {
-        cinfile >> a[i];
+        cin >> a[i];
         b[i] = a[i];
     }
-    cinfile.close();
+    cin.close();
 
     sort(a, a + k);
-
     int min_sum = 0;
     int left = 0;
     while (left < k - 1) {
         min_sum += a[left] + a[left + 1] - 1;
-        a[left] = a[left] + a[left + 1];
-        a[left + 1] = 0;
+        a[left + 1] = a[left] + a[left + 1];
+        //a[left] = 0;
         left++;
-        sort(a, a + k);
+        sort(a + left, a + k);
     }
 
-    sort(b, b + k);
+    sort(b, b + k, std::greater<int>());
     int max_sum = 0;
-    for (int hh = 1; hh <= k - 1; hh++) {
-        max_sum += b[k - 1] + b[k - 2] - 1;
-        b[k - 1] = b[k - 1] + b[k - 2];
-        b[k - 2] = 0;
-        sort(b, b + k);
+    left = 0;
+    while (left < k - 1) {
+        max_sum += b[left] + b[left + 1] - 1;
+        b[left + 1] = b[left] + b[left + 1];
+        //b[left] = 0;
+        left++;
+        sort(b + left, b + k, std::greater<int>());
     }
+
     cout << max_sum << " " << min_sum << endl;
     return 0;
 }

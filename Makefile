@@ -6,6 +6,12 @@ RMFLAGS = -fr
 
 CC = clang++
 
+# ref to https://gist.github.com/sighingnow/deee806603ec9274fd47
+OSFLAG :=
+ifeq ($(OS),Windows_NT)
+	OSFLAG += --target=x86_64-pc-mingw32
+endif
+
 DIR_EXES = exes
 DIRS = $(DIR_EXES)
 
@@ -29,8 +35,12 @@ $(DIRS):
 	$(MKDIR) $@
 # $(EXES): $(SRCS)
 # 	$(CC) -o $@ $(filter %.cpp, $^)
+# for Windows
 $(DIR_EXES)/%.exe: $(DIRS) %.cpp
 	$(CC) --target=x86_64-pc-mingw32 -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^)
+# for Linux
+$(DIR_EXES)/%: $(DIRS) %.cpp
+	$(CC) -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^)
 clean:
 	rd /s/q $(DIR_EXES)
 

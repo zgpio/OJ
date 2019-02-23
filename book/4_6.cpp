@@ -7,19 +7,22 @@ using namespace std;
 
 int main()
 {
-    ifstream cinfile;
-    cinfile.open("./input/4_6", ios::in);
+    ifstream cin;
+    cin.open("./input/4_6", ios::in);
     int n;
-    cinfile >> n;
+    cin >> n;
     int* a = new int[n];
     for (int i = 0; i < n; ++i) {
-        cinfile >> a[i];
+        cin >> a[i];
     }
-    sort(a, a + n, std::greater<int>());
+    sort(a, a + n, std::greater<int>());  // 从大到小
+    int sum = 0;
     for (int i = 0; i < n; ++i) {
-        a[i] *= i + 1;
+        // (i+1)个人等待了a[i]的时间
+        sum += a[i]*(i+1);
+        // a[i] *= i + 1;
     }
-    int sum = accumulate(a, a + n, 0);
+    // int sum = accumulate(a, a + n, 0);
     std::cout << sum * 1.0 / n << std::endl;
     return 0;
 }

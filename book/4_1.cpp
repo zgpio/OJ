@@ -1,7 +1,7 @@
 #include <algorithm>  // std::sort
 #include <fstream>
 #include <iostream>
-#include <sstream>
+// #include <sstream>
 using namespace std;
 
 struct Job {
@@ -33,17 +33,17 @@ int manage(int n, Job *b)
 
 int main()
 {
-    ifstream cinfile;
-    cinfile.open("./input/4_1", ios::in);
+    ifstream cin;
+    cin.open("./input/4_1", ios::in);
     int n, roomnum;
-    cinfile >> n;  // job个数
+    cin >> n;  // job个数
     Job b[n + 1];  // note: do not use b[0]
     b[0].begin = 0; b[0].end = 0; b[0].ok = 0;
     for (int i = 1; i <= n; i++) {
-        cinfile >> b[i].begin >> b[i].end;
+        cin >> b[i].begin >> b[i].end;
         b[i].ok = 0;
     }
-    cinfile.close();
+    cin.close();
     sort(b + 1, b + n + 1, jobComp);  // [b+1, b+n+1)
     roomnum = manage(n, b);
 
