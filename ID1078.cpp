@@ -17,6 +17,8 @@ bool check(int x, int y)
     return true;
 }
 
+// 在n>12时, DFS深搜基本是TLE了, 进一步采用动态规划/记忆化搜索
+// 类似 POJ 1088 滑雪. http://poj.org/problem?id=1088
 int dfs(int x, int y)
 {
     if (dp[x][y] != -1) return dp[x][y];
