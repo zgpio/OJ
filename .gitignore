@@ -1,3 +1,5 @@
+.ropeproject/
+exes/
 *.exe
 *.o
 tags
