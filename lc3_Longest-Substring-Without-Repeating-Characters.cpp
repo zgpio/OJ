@@ -43,6 +43,6 @@ int main(int argc, char *argv[])
     assert(sol.lengthOfLongestSubstring("bbbbbb") == 1);
     assert(sol.lengthOfLongestSubstring("aab") == 2);
     assert(sol.lengthOfLongestSubstring("abba") == 2);
-    std::cout << "end" << std::endl;
+
     return 0;
 }
