@@ -3,3 +3,4 @@ exes/
 *.exe
 *.o
 tags
+.DS_Store
