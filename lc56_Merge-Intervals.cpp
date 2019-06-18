@@ -16,15 +16,18 @@
 using namespace std;
 
 // sort using a custom function object
-struct {
-    bool operator()(vector<int> a, vector<int> b) const { return a[0] < b[0]; }
-} customLess;
+// struct {
+//     bool operator()(vector<int> a, vector<int> b) const { return a[0] < b[0];
+//     }
+// } customLess;
 
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals)
     {
+        // NOTE vector<int> 是可以直接比较的
         sort(intervals.begin(), intervals.end());
+
         vector<vector<int>> ans;
         for (auto i : intervals) {
             if (ans.empty())
@@ -62,11 +65,14 @@ int main()
 
     vector<vector<int>> t4 = {{1, 4}, {2, 3}};
     vector<vector<int>> a4 = {{1, 4}};
+    vector<vector<int>> t5 = {{2, 6}, {1, 3}, {8, 10}, {15, 18}};
+    vector<vector<int>> a5 = {{1, 6}, {8, 10}, {15, 18}};
 
     assert(sol.merge(t1) == a1);
     assert(sol.merge(t2) == a2);
     assert(sol.merge(t3) == a3);
     assert(sol.merge(t4) == a4);
+    assert(sol.merge(t5) == a5);
 
     return 0;
 }
