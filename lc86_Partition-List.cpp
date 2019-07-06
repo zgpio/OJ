@@ -13,26 +13,9 @@
 #include <string>
 #include <tuple>
 #include <unordered_map>
+#include "lc/lclib.h"
 using namespace std;
 
-// Definition for singly-linked list.
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
-ListNode *conv(vector<int> a)
-{
-    ListNode *head = new ListNode(-1);
-    ListNode *tail = head;
-    for (auto i : a) {
-        ListNode *t = new ListNode(i);
-        tail->next = t;
-        tail = t;
-    }
-    return head->next;
-}
 class Solution {
 public:
     ListNode *partition(ListNode *head, int x)
