@@ -24,6 +24,8 @@ void printL(ListNode *h)
 
 bool equaList(ListNode *a, ListNode *b)
 {
+    if ((a == NULL && b != NULL) || (a != NULL && b == NULL))
+        return false;
     while (a && b) {
         if (a->val != b->val) return false;
         a = a->next;
