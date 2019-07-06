@@ -12,19 +12,15 @@ ifeq ($(OS),Windows_NT)
 	OSFLAG += --target=x86_64-pc-mingw32
 endif
 
-DIR_EXES = exes
-DIRS = $(DIR_EXES)
-
-#EXE = complicated.exe
-#EXE := $(addprefix $(DIR_EXES)/, $(EXE))
+EXE_DIR = exes
+DIRS = $(EXE_DIR)
 
 SRCS = $(wildcard *.cpp)
 EXES = $(SRCS:.cpp=.exe)
-EXES := $(addprefix $(DIR_EXES)/, $(EXES))
-#OBJS := $(addprefix $(DIR_OBJS)/, $(OBJS))
+EXES := $(addprefix $(EXE_DIR)/, $(EXES))
 
 ifdef OBJS
-EXES = $(addprefix $(DIR_EXES)/, $(OBJS))
+EXES = $(addprefix $(EXE_DIR)/, $(OBJS))
 all: $(EXES)
 endif
 
@@ -36,13 +32,13 @@ $(DIRS):
 # $(EXES): $(SRCS)
 # 	$(CC) -o $@ $(filter %.cpp, $^)
 # for Windows
-$(DIR_EXES)/%.exe: $(DIRS) %.cpp
+$(EXE_DIR)/%.exe: $(DIRS) %.cpp
 	$(CC) --target=x86_64-pc-mingw32 -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^)
 # for Linux
-$(DIR_EXES)/%: $(DIRS) %.cpp
-	$(CC) -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^)
+$(EXE_DIR)/%: $(DIRS) %.cpp
+	$(CC) -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^) $(wildcard lc/*.cpp)
 clean:
-	rd /s/q $(DIR_EXES)
+	rd /s/q $(EXE_DIR)
 
 # OPTIONS:
 #   --target=<value>        Generate code for the given target
@@ -52,6 +48,3 @@ clean:
 #   -c                      Only run preprocess, compile, and assemble steps
 #   -fexec-charset=gbk
 #   -H <file>               Show header includes and nesting depth
-# let s:windows_CFlags = 'clang\ --target=x86_64-pc-mingw32\ -Wall\ -g\ -O0\ %\ -o\ '
-# let s:linux_CFlags = 'gcc\ -Wall\ -g\ -O0\ %\ -o\ '
-# let s:linux_CPPFlags = 'g++\ -Wall\ -g\ -O0\ %\ -o\ '
