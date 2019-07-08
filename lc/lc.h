@@ -1,5 +1,5 @@
-#ifndef LC
-#define LC
+#ifndef LC_H
+#define LC_H
 #include <algorithm>
 #include <cassert>
 #include <climits>
@@ -7,7 +7,9 @@
 #include <cstring>
 #include <deque>
 #include <fstream>
-#include <iostream>  // 其中包含了stl_algobase
+#include <functional>
+#include <initializer_list>
+#include <iostream> // 其中包含了stl_algobase
 #include <limits>
 #include <list>
 #include <map>
@@ -15,7 +17,5 @@
 #include <string>
 #include <tuple>
 #include <unordered_map>
-#include <initializer_list>
-#include <functional>
 
 #endif /* ifndef LC */
