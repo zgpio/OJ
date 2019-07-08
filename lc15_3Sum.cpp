@@ -1,19 +1,4 @@
-#include <assert.h>
-#include <algorithm>
-#include <climits>
-#include <cstdio>
-#include <cstring>
-#include <deque>
-#include <fstream>
-#include <initializer_list>
-#include <iostream>
-#include <limits>
-#include <list>
-#include <map>
-#include <queue>
-#include <string>
-#include <tuple>
-#include <unordered_map>
+#include "lc/lc.h"
 using namespace std;
 
 // ref to https://blog.csdn.net/qq_35280514/article/details/51637920

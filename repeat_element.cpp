@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cmath>
-#include <iostream>//其中包含了stl_algobase
+#include <iostream>
 #include <algorithm>
 #include <cstring>
 #include <list>

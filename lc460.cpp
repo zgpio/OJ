@@ -1,14 +1,4 @@
-#include <assert.h>
-#include <cstdio>
-#include <deque>
-#include <fstream>
-#include <iostream>
-#include <list>
-#include <map>
-#include <queue>
-#include <string>
-#include <tuple>
-#include <unordered_map>
+#include "lc/lc.h"
 using namespace std;
 //#include <hash_map>
 // using namespace __gnu_cxx;
