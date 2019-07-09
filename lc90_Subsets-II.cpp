@@ -4,18 +4,18 @@ using namespace std;
 // TODO: 组合数生成测试
 // c(r,n)
 // k1为当前已记录序列长度, k2为剩余待选取元素的起始位置
-vector<vector<int>> ret;
+set<vector<int>> ret;
 int cnt;
-void combination_recursive(vector<int> &rec, const int arr[], int n, int r,
-                           int k1, int k2)
+void combination_recursive(vector<int> &rec, const int arr[], const int n,
+                           const int r, int k1, int k2)
 {
     cnt++;
     if (k1 == r) // 输出当前序列
     {
-        // for (int i = 0; i < r; ++i)
-        //     cout << rec[i] << " ";
-        // cout << endl;
-        ret.push_back(rec);
+        // NOTE 切勿修改rec
+        auto cp = rec;
+        sort(cp.begin(), cp.end());
+        ret.insert(cp);
     }
     else
         for (int i = k2; i + r - k1 - 1 < n; ++i) {
@@ -23,7 +23,7 @@ void combination_recursive(vector<int> &rec, const int arr[], int n, int r,
             combination_recursive(rec, arr, n, r, k1 + 1, i + 1); // 递归回溯
         }
 }
-void combination(int arr[], int n) // 输出n个元素的全部组合
+void combination(const int arr[], const int n) // 输出n个元素的全部组合
 {
     for (int i = 0; i <= n; ++i) {
         vector<int> rec(i); // 记录组合序列
@@ -33,7 +33,7 @@ void combination(int arr[], int n) // 输出n个元素的全部组合
 
 class Solution {
 public:
-    vector<vector<int>> subsets(vector<int> &nums)
+    vector<vector<int>> subsetsWithDup(vector<int> &nums)
     {
         int n = nums.size();
         int *a = new int[n];
@@ -42,8 +42,11 @@ public:
             a[i] = nums[i];
         }
         combination(a, n);
-        delete [] a;
-        return ret;
+        delete[] a;
+        vector<vector<int>> ans;
+        for (auto i : ret)
+            ans.push_back(i);
+        return ans;
     }
 };
 
@@ -55,8 +58,9 @@ int main()
 
     Solution sol;
     vector<int> t1 = {4, 1, 0};
-    auto ret = sol.subsets(t1);
+    auto ret = sol.subsetsWithDup(t1);
     std::cout << cnt << std::endl;
+
     for (auto i : ret) {
         for (auto j : i) {
             std::cout << j << " ";
