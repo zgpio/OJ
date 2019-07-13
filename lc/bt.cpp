@@ -5,10 +5,11 @@ using namespace std;
 
 TreeNode *constructT(vector<int> a)
 {
+    int L = a.size();
+    if (L == 0) return nullptr;
     std::deque<TreeNode *> q;
     TreeNode *T = new TreeNode(a[0]);
     q.push_back(T);
-    int L = a.size();
     for (int i = 0; i * 2 + 1 < L; ++i) {
         TreeNode *t = q.front();
         q.pop_front();
