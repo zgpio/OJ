@@ -1,6 +1,7 @@
 #include "lc/lc.h"
 using namespace std;
 
+// TODO: mv to lc lib
 // ref to https://blog.csdn.net/qq_35280514/article/details/51637920
 // 用来终止递归并打印最后一个元素的函数
 // 此函数必须在可变参数版本的print定义之前声明
@@ -38,7 +39,7 @@ public:
                 int sum = nums[i] + nums[j] + nums[k];
                 if (sum == 0) {
                     // find possible solution
-                    // print(nums[i], nums[j], nums[k]);
+                    print(nums[i], nums[j], nums[k]);
                     res.push_back({nums[i], nums[j], nums[k]});
                     // move both left and right indexes
                     ++j;
@@ -70,7 +71,8 @@ int main()
     vector<int> t1{-1, 0, 1, 2, -1, -4};
     vector<vector<int>> a1{{-1, 0, 1}, {-1, -1, 2}};
 
-    assert(sol.threeSum(t1) == a1);
+    sol.threeSum(t1);
+    // TODO: assert
 
     return 0;
 }
