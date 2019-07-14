@@ -1,5 +1,5 @@
 #include "lc/lc.h"
-#include "lc/lclib.h"
+#include "lc/list.h"
 using namespace std;
 
 class Solution {
@@ -32,9 +32,9 @@ int main()
     Solution sol;
     vector<int> t1 = {1, 2, 3, 4, 5};
     vector<int> a1 = {1, 4, 3, 2, 5};
-    ListNode *test1 = conv(t1);
+    ListNode *test1 = buildList(t1);
     int m = 2, n = 4;
-    ListNode *ans1 = conv(a1);
+    ListNode *ans1 = buildList(a1);
 
     ListNode *pred1 = sol.reverseBetween(test1, m, n);
     printL(pred1);

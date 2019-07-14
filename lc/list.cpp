@@ -1,7 +1,7 @@
-#include "lclib.h"
+#include "list.h"
 #include <iostream>
 #include <vector>
-ListNode *conv(std::vector<int> a)
+ListNode *buildList(std::vector<int> a)
 {
     ListNode *head = new ListNode(-1);
     ListNode *tail = head;

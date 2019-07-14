@@ -1,5 +1,5 @@
 #include "lc/lc.h"
-#include "lc/lclib.h"
+#include "lc/list.h"
 using namespace std;
 
 class Solution {
@@ -42,15 +42,15 @@ int main()
     int k3 = 2000000000;
 
     int k1 = 2;
-    ListNode *test1 = conv(t1);
+    ListNode *test1 = buildList(t1);
     printL(test1);
     // ListNode* ans1 = conv(a1);
     ListNode *ans1 = sol.rotateRight(test1, k1);
     printL(ans1);
-    ListNode *test2 = conv(t2);
+    ListNode *test2 = buildList(t2);
     ListNode *ans2 = sol.rotateRight(test2, k2);
 
-    ListNode *test3 = conv(t3);
+    ListNode *test3 = buildList(t3);
     ListNode *ans3 = sol.rotateRight(test3, k3);
     printL(ans3);
 

@@ -1,4 +1,4 @@
-#include "lc/lclib.h"
+#include "lc/list.h"
 #include "lc/lc.h"
 using namespace std;
 
@@ -39,10 +39,10 @@ public:
 int main()
 {
     Solution sol;
-    ListNode *t1 = conv({1, 2, 3, 3, 4, 4, 5});
-    ListNode *a1 = conv({1, 2, 5});
-    ListNode *t2 = conv({1, 1, 1, 2, 3});
-    ListNode *a2 = conv({2, 3});
+    ListNode *t1 = buildList({1, 2, 3, 3, 4, 4, 5});
+    ListNode *a1 = buildList({1, 2, 5});
+    ListNode *t2 = buildList({1, 1, 1, 2, 3});
+    ListNode *a2 = buildList({2, 3});
     assert(equaList(t1, t1));
     assert(equaList(sol.deleteDuplicates(t1), a1));
     assert(equaList(sol.deleteDuplicates(t2), a2));

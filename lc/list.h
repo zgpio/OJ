@@ -8,7 +8,7 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-ListNode *conv(std::vector<int> a);
+ListNode *buildList(std::vector<int> a);
 void printL(ListNode *h);
 bool equaList(ListNode *a, ListNode *b);
 

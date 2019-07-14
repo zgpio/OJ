@@ -1,5 +1,5 @@
 #include "lc/lc.h"
-#include "lc/lclib.h"
+#include "lc/list.h"
 using namespace std;
 
 class Solution {
@@ -16,7 +16,7 @@ public:
         }
         for (auto a : after)
             before.push_back(a);
-        return conv(before);
+        return buildList(before);
     }
 };
 int main()
@@ -25,8 +25,8 @@ int main()
     vector<int> t1 = {1, 4, 3, 2, 5, 2};
     int x1 = 3;
     vector<int> a1 = {1, 2, 2, 4, 3, 5};
-    ListNode *test1 = conv(t1);
-    ListNode *ans1 = conv(a1);
+    ListNode *test1 = buildList(t1);
+    ListNode *ans1 = buildList(a1);
     ListNode *pred1 = sol.partition(test1, x1);
     while (pred1) {
         if (pred1->val != ans1->val) {
