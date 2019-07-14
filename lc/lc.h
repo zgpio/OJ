@@ -19,4 +19,4 @@
 #include <tuple>
 #include <unordered_map>
 
-#endif /* ifndef LC */
+#endif /* ifndef LC_H */
