@@ -35,8 +35,8 @@ $(DIRS):
 $(EXE_DIR)/%.exe: $(DIRS) %.cpp
 	$(CC) --target=x86_64-pc-mingw32 -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^)
 # for Linux
-$(EXE_DIR)/%: $(DIRS) %.cpp
-	$(CC) -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^) $(wildcard lc/*.cpp)
+$(EXE_DIR)/%: $(DIRS) %.cpp $(wildcard lc/*.cpp)
+	$(CC) -std=c++11 -Wall -g -O0 -o $@ $(filter %.cpp, $^)
 clean:
 	rd /s/q $(EXE_DIR)
 
