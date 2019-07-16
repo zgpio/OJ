@@ -60,5 +60,11 @@ int main()
     // 5 <-> 1
     swapNode(t3, t3->next->next->next->next);
     printL(t3->next);
+
+    // test insertNode
+    ListNode *t4 = buildList({-1, 1, 2, 3, 4, 5});
+    // 5插入到1前面
+    insertNode(t4, t4->next->next->next->next);
+    printL(t4->next);
     return 0;
 }
