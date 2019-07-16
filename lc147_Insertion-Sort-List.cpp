@@ -55,5 +55,10 @@ int main()
     ListNode *a2 = buildList(vector<int>{-1, 0, 3, 4, 5});
     assert(equaList(sol.insertionSortList(t2), a2));
 
+    // test swapNode
+    ListNode *t3 = buildList({-1, 1, 2, 3, 4, 5});
+    // 5 <-> 1
+    swapNode(t3, t3->next->next->next->next);
+    printL(t3->next);
     return 0;
 }

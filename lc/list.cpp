@@ -29,7 +29,7 @@ bool equaList(ListNode *a, ListNode *b)
         a = a->next;
         b = b->next;
     }
-    if(a==NULL && b==NULL)
+    if (a == NULL && b == NULL)
         return true;
     else
         return false;
