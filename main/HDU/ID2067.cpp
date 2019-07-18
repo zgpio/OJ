@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen ("input.txt", "rt", stdin);
+    freopen ("../../input/2067", "rt", stdin);
 #endif
 
     long long map[36][36] = {};
