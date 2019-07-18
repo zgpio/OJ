@@ -9,8 +9,8 @@ project(oj)
 
 SET(MAIN "main.cpp" CACHE STRING "Main Source file")
 
-string(REGEX REPLACE "/" "_" TARGET ${MAIN})
-get_filename_component(TARGET ${TARGET} NAME_WE)
+# string(REGEX REPLACE "/" "_" TARGET ${MAIN})
+get_filename_component(TARGET ${MAIN} NAME_WE)
 
 # The optional <mode> keyword determines the type of message
 MESSAGE(STATUS "Target Name: ${TARGET}")

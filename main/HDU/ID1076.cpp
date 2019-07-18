@@ -32,7 +32,7 @@ int leapYear(int Y)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("./input/input.txt", "rt", stdin);
+    freopen("../../input/1076", "rt", stdin);
 #endif
     int T;
     std::cin >> T;

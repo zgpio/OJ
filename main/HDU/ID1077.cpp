@@ -83,7 +83,7 @@ int get_cover_num(Point a, Point b, int n)
 int main()
 {
 #ifndef ONLINE_JUDGE
-    freopen("input.txt", "rt", stdin);
+    freopen("../../input/1077", "rt", stdin);
 #endif
     int T;
     scanf("%d", &T);
