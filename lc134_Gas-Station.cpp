@@ -12,6 +12,7 @@ public:
         for (int i = 0; i < n; ++i) {
             int j = i;
             int all = 0;
+            // TODO: 隐蔽循环变量的LOOP宏
             int repeat = n;
             while (repeat) {
                 all += gas[j];
