@@ -15,6 +15,7 @@
 #include <map>
 #include <queue>
 #include <string>
+#include <stack>
 #include <set>
 #include <tuple>
 #include <unordered_map>
