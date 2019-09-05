@@ -4,4 +4,5 @@
 
 # TODO
 - [x] lc91
-- [ ] lc71
+- [x] lc71
+- [ ] 48. Rotate Image

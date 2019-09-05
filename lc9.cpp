@@ -1,7 +1,7 @@
 #include "lc/lc.h"
 using namespace std;
 
-// 9. Palindrome Number
+// 9. Palindrome Number (回文数)
 class Solution {
 public:
     bool isPalindrome(int x)
