@@ -9,6 +9,7 @@ class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         nums = range(1, 10)
         ans = []
+        # TODO: 递归生成组合数时验证条件来进行剪枝
         for lst in combinations(nums, k):
             if sum(lst) == n:
                 ans.append(list(lst))
