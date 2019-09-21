@@ -16,7 +16,8 @@ class Solution:
 
             # 尽可能地移除比c大的栈顶元素
             while len(s) > 0 and c < s[-1] and i - len(s) < k:
-                del s[-1]
+                s.pop(-1)  # or del s[-1]
+
             s.append(c)
 
         print(str(int(''.join(s[:n - k]))))
