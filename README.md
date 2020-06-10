@@ -22,4 +22,5 @@ O(n!)           n < 11.
 # Build
 ```sh
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DCMAKE_BUILD_TYPE=Debug -S ~/OJ -B ~/OJ/build -DMAIN:STRING=kmp.cpp
+ln -s build/compile_commands.json
 ```
