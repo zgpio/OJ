@@ -29,5 +29,6 @@ include_directories(.)
 AUX_SOURCE_DIRECTORY(lc LC_SRCS)
 MESSAGE(STATUS "LC_SRCS: " ${LC_SRCS})
 
+add_definitions(-DLOCAL_JUDGE)
 # TODO 多个main文件共享lc编译的二进制文件
 add_executable(${TARGET} ${MAIN} ${LC_SRCS})

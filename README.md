@@ -15,9 +15,11 @@ O(n!)           n < 11.
 * https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
 
 # TODO
-- [x] lc91
-- [x] lc71
-- [ ] 48. Rotate Image
+
+# NOTE
+- CMakeLists.txt
+    - 设置宏 LOCAL_JUDGE, 用于区分本地和ONLINE
+    - 设置 CMAKE_EXPORT_COMPILE_COMMANDS 选项, 用于导出编译命令
 
 # Build
 ```sh
