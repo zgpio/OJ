@@ -9,6 +9,8 @@ project(oj)
 
 SET(MAIN "main.cpp" CACHE STRING "Main Source file")
 
+# to generate a compile_commands.json usable by ycm and other tooling
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # string(REGEX REPLACE "/" "_" TARGET ${MAIN})
 get_filename_component(TARGET ${MAIN} NAME_WE)
 
