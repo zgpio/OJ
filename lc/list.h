@@ -1,6 +1,8 @@
 #ifndef LCLIB
 #define LCLIB
 #include <vector>
+#include <cassert>
+#include <cstddef>
 // Definition for singly-linked list.
 struct ListNode {
     int val;
