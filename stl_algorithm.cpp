@@ -23,7 +23,7 @@ int main()
 {
   /// std::accumulate
   {
-    vector<int> v{1, 2, 3, 4};
+    vector<int> v{1, 2, 3};
 
     int sum = std::accumulate(v.begin(), v.end(), 0);
 
@@ -50,15 +50,15 @@ int main()
 
   /// std::partial_sum
   {
-    vector<int> v = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2}; // or vector<int>v(10, 2);
+    vector<int> v = {2, 2, 2, 2, 2}; // or vector<int>v(5, 2);
 
-    cout << "The first 10 偶数 are: ";
+    cout << "The first 5 偶数 are: ";
     std::partial_sum(v.begin(), v.end(),
                      std::ostream_iterator<int>(cout, " "));
     cout << '\n';
 
     std::partial_sum(v.begin(), v.end(), v.begin(), std::multiplies<int>());
-    cout << "The first 10 powers of 2 are: ";
+    cout << "The first 5 powers of 2 are: ";
     for (auto n : v) {
         cout << n << " ";
     }
@@ -75,8 +75,8 @@ int main()
 
   // lower_bound/upper_bound example
   {
-    int myints[] = {10,20,30,30,20,10,10,20};
-    vector<int> v(myints,myints+8);                // 10 20 30 30 20 10 10 20
+    int a[] = {10,20,30,30,20,10,10,20};
+    vector<int> v(a,a+8);                          // 10 20 30 30 20 10 10 20
     std::sort (v.begin(), v.end());                // 10 10 10 20 20 20 30 30
     vector<int>::iterator low,up;
     low=std::lower_bound (v.begin(), v.end(), 20); //          ^
@@ -88,17 +88,13 @@ int main()
 
   // rotate algorithm example
   {
-    vector<int> myvector;
+    vector<int> v{1, 2, 3, 4, 5};
 
-    // set some values:
-    for (int i=1; i<10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
-
-    std::rotate(myvector.begin(),myvector.begin()+3,myvector.end());
-                                                    // 4 5 6 7 8 9 1 2 3
+    std::rotate(v.begin(),v.begin()+3,v.end()); // 4 5 1 2 3
     // print out content:
-    cout << "myvector contains:";
-    for (vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
-      cout << ' ' << *it;
+    cout << "rotate:";
+    for (auto i:v)
+      cout << ' ' << i;
     cout << '\n';
   }
 
@@ -112,32 +108,33 @@ int main()
     //
 
     int arr[] = {4,5,6,7,8,1};
-    vector<int>vectorArr(arr,arr + sizeof(arr) / sizeof(int));
+    vector<int>v(arr,arr + sizeof(arr) / sizeof(int));
 
-    cout <<"1) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
+    assert(!is_heap(v.begin(), v.end()));
 
     // 构造最大堆
-    make_heap(vectorArr.begin(), vectorArr.end(), less<int>());
-    cout <<"2) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
+    make_heap(v.begin(), v.end(), less<int>()); // greater<int>()
+    assert(is_heap(v.begin(), v.end()));
 
     // 向堆中插入一个元素，默认插入在顶部
-    vectorArr.push_back(100);
-    cout <<"3) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
-    push_heap(vectorArr.begin(), vectorArr.end());
-    cout <<"4) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
+    v.push_back(100);
+    assert(!is_heap(v.begin(), v.end()));
+    push_heap(v.begin(), v.end());
+    assert(is_heap(v.begin(), v.end()));
 
     // 弹出一个元素，默认是首元素和尾元素交换，交换以后就不是正确的堆了；真正的删除需要去vector里面pop；
-    pop_heap(vectorArr.begin(), vectorArr.end());
-    cout <<"5) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
-    vectorArr.pop_back();
-    cout <<"6) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
+    pop_heap(v.begin(), v.end());
+    assert(!is_heap(v.begin(), v.end()));
+    v.pop_back();
+    assert(is_heap(v.begin(), v.end()));
 
-    // 堆排序, 堆排序后
-    sort_heap(vectorArr.begin(), vectorArr.end());
-    cout <<"7) "<<is_heap(vectorArr.begin(), vectorArr.end()) << endl;
-    for (int i = 0; i < vectorArr.size(); i++)
+    // 堆排序: 最大堆 -> 升序序列
+    sort_heap(v.begin(), v.end());
+    assert(!is_heap(v.begin(), v.end()));
+    cout << "STL_heap: ";
+    for (int i = 0; i < v.size(); i++)
     {
-        cout << vectorArr[i] << " ";
+        cout << v[i] << " ";
     }
     cout << endl;
 
@@ -149,22 +146,22 @@ int main()
       return (i==j);
     };
 
-    int myints[] = {10,20,20,20,30,30,20,20,10};           // 10 20 20 20 30 30 20 20 10
-    vector<int> myvector (myints,myints+9);
+    int a[] = {0,1,1,1,3,3,1,1,0};           // 0 1 1 1 3 3 1 1 0
+    vector<int> v (a,a+9);
 
     // using default comparison:
     vector<int>::iterator it;
-    it = std::unique (myvector.begin(), myvector.end());   // 10 20 30 20 10 ?  ?  ?  ?
-                                                           //                ^
+    it = std::unique (v.begin(), v.end());   // 0 1 3 1 0 ? ? ? ?
+                                             //           ^
 
-    myvector.resize( std::distance(myvector.begin(),it) ); // 10 20 30 20 10
+    v.resize( std::distance(v.begin(),it) ); // 0 1 3 1 0
 
     // using predicate comparison:
-    std::unique (myvector.begin(), myvector.end(), f);   // (no changes)
+    std::unique (v.begin(), v.end(), f);   // (no changes)
 
     // print out content:
-    cout << "myvector contains:";
-    for (it=myvector.begin(); it!=myvector.end(); ++it)
+    cout << "unique:";
+    for (it=v.begin(); it!=v.end(); ++it)
       cout << ' ' << *it;
     cout << '\n';
 
