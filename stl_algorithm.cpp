@@ -5,39 +5,42 @@
 #include <iostream>     // std::cout
 #include <algorithm>    // std::unique, std::distance, std::rotate,
                         // std::lower_bound, std::upper_bound, std::sort
+                        // std::merge
 #include <vector>       // std::vector
 #include <queue>
 
 using std::cout;
+using std::vector;
+using std::string;
 template<typename T> void print_queue(T& q) {
     while(!q.empty()) {
-        std::cout << q.top() << " ";
+        cout << q.top() << " ";
         q.pop();
     }
-    std::cout << '\n';
+    cout << '\n';
 }
 int main()
 {
   /// std::accumulate
   {
-    std::vector<int> v{1, 2, 3, 4};
+    vector<int> v{1, 2, 3, 4};
 
     int sum = std::accumulate(v.begin(), v.end(), 0);
 
     int product = std::accumulate(v.begin(), v.end(), 1, std::multiplies<int>());
 
-    auto dash_fold = [](std::string a, int b) {
+    auto dash_fold = [](string a, int b) {
                          return std::move(a) + '-' + std::to_string(b);
                      };
 
-    std::string s = std::accumulate(std::next(v.begin()), v.end(),
-                                    std::to_string(v[0]), // start with first element
-                                    dash_fold);
+    string s = std::accumulate(std::next(v.begin()), v.end(),
+                               std::to_string(v[0]), // start with first element
+                               dash_fold);
 
     // Right fold using reverse iterators
-    std::string rs = std::accumulate(std::next(v.rbegin()), v.rend(),
-                                     std::to_string(v.back()), // start with last element
-                                     dash_fold);
+    string rs = std::accumulate(std::next(v.rbegin()), v.rend(),
+                                std::to_string(v.back()), // start with last element
+                                dash_fold);
 
     cout << "sum: " << sum << '\n'
          << "product: " << product << '\n'
@@ -47,7 +50,7 @@ int main()
 
   /// std::partial_sum
   {
-    std::vector<int> v = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2}; // or std::vector<int>v(10, 2);
+    vector<int> v = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2}; // or vector<int>v(10, 2);
 
     cout << "The first 10 偶数 are: ";
     std::partial_sum(v.begin(), v.end(),
@@ -63,7 +66,7 @@ int main()
 
   }
   {
-    std::string s = "231";
+    string s = "231";
     std::sort(s.begin(), s.end());
     do {
         cout << s << '\n';
@@ -73,19 +76,19 @@ int main()
   // lower_bound/upper_bound example
   {
     int myints[] = {10,20,30,30,20,10,10,20};
-    std::vector<int> v(myints,myints+8);           // 10 20 30 30 20 10 10 20
+    vector<int> v(myints,myints+8);                // 10 20 30 30 20 10 10 20
     std::sort (v.begin(), v.end());                // 10 10 10 20 20 20 30 30
-    std::vector<int>::iterator low,up;
+    vector<int>::iterator low,up;
     low=std::lower_bound (v.begin(), v.end(), 20); //          ^
     up= std::upper_bound (v.begin(), v.end(), 20); //                   ^
 
-    std::cout << "lower_bound at position " << (low- v.begin()) << '\n';
-    std::cout << "upper_bound at position " << (up - v.begin()) << '\n';
+    cout << "lower_bound at position " << (low- v.begin()) << '\n';
+    cout << "upper_bound at position " << (up - v.begin()) << '\n';
   }
 
   // rotate algorithm example
   {
-    std::vector<int> myvector;
+    vector<int> myvector;
 
     // set some values:
     for (int i=1; i<10; ++i) myvector.push_back(i); // 1 2 3 4 5 6 7 8 9
@@ -94,7 +97,7 @@ int main()
                                                     // 4 5 6 7 8 9 1 2 3
     // print out content:
     cout << "myvector contains:";
-    for (std::vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
+    for (vector<int>::iterator it=myvector.begin(); it!=myvector.end(); ++it)
       cout << ' ' << *it;
     cout << '\n';
   }
@@ -147,10 +150,10 @@ int main()
     };
 
     int myints[] = {10,20,20,20,30,30,20,20,10};           // 10 20 20 20 30 30 20 20 10
-    std::vector<int> myvector (myints,myints+9);
+    vector<int> myvector (myints,myints+9);
 
     // using default comparison:
-    std::vector<int>::iterator it;
+    vector<int>::iterator it;
     it = std::unique (myvector.begin(), myvector.end());   // 10 20 30 20 10 ?  ?  ?  ?
                                                            //                ^
 
@@ -160,10 +163,10 @@ int main()
     std::unique (myvector.begin(), myvector.end(), f);   // (no changes)
 
     // print out content:
-    std::cout << "myvector contains:";
+    cout << "myvector contains:";
     for (it=myvector.begin(); it!=myvector.end(); ++it)
-      std::cout << ' ' << *it;
-    std::cout << '\n';
+      cout << ' ' << *it;
+    cout << '\n';
 
   }
   {
@@ -175,7 +178,7 @@ int main()
 
     print_queue(q);
 
-    std::priority_queue<int, std::vector<int>, std::greater<int> > q2;
+    std::priority_queue<int, vector<int>, std::greater<int> > q2;
 
     for(int n : {1,8,5,6,3,4,0,9,7,2})
         q2.push(n);
@@ -184,12 +187,29 @@ int main()
 
     // Using lambda to compare elements.
     auto cmp = [](int left, int right) { return (left ^ 1) < (right ^ 1); };
-    std::priority_queue<int, std::vector<int>, decltype(cmp)> q3(cmp);
+    std::priority_queue<int, vector<int>, decltype(cmp)> q3(cmp);
 
     for(int n : {1,8,5,6,3,4,0,9,7,2})
         q3.push(n);
 
     print_queue(q3);
+
+  }
+
+  { // merge algorithm example
+
+    int first[] = {5,10,15,20,25};
+    int second[] = {50,40,30,20,10};
+    vector<int> v(10);
+
+    std::sort (first,first+5);
+    std::sort (second,second+5);
+    std::merge (first,first+5,second,second+5,v.begin());
+
+    cout << "The resulting vector contains:";
+    for (vector<int>::iterator it=v.begin(); it!=v.end(); ++it)
+      cout << ' ' << *it;
+    cout << '\n';
 
   }
 }
