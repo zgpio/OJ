@@ -1,15 +1,22 @@
+// #include <bits/stdc++.h>
 #include <numeric>
 #include <string>
 #include <functional>
 #include <iterator>
 #include <iostream>     // std::cout
+#include <sstream>      // std::istringstream
 #include <algorithm>    // std::unique, std::distance, std::rotate,
                         // std::lower_bound, std::upper_bound, std::sort
                         // std::merge
 #include <vector>       // std::vector
 #include <queue>
+#include <unordered_map>
+#include <climits>
+#include <cfloat>
 
+using std::cin;
 using std::cout;
+using std::endl;
 using std::vector;
 using std::string;
 template<typename T> void print_queue(T& q) {
@@ -208,5 +215,36 @@ int main()
       cout << ' ' << *it;
     cout << '\n';
 
+  }
+  { // unordered_map::find
+
+    std::unordered_map<string,double> m = {
+       {"mom",5.4},
+       {"dad",6.1} };
+
+    m["bro"] = 5.9;
+    assert(!m.empty());
+
+    string str="mom";
+    std::istringstream is(str);
+    string input;
+    getline (is,input); // cin
+
+    std::unordered_map<string,double>::const_iterator got = m.find (input);
+
+    if ( got == m.end() )
+      cout << "not found:" << input;
+    else
+      cout << got->first << " is " << got->second;
+
+    cout << endl;
+
+  }
+  { // <climits> <cfloat>
+      INT_MAX;
+      INT_MIN;
+      UINT_MAX;
+      SHRT_MAX;
+      LONG_MAX;
   }
 }
