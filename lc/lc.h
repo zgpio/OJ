@@ -4,6 +4,7 @@
 #include <cassert>
 #include <climits>
 #include <cstdio>
+#include <cstdlib> // srand, rand
 #include <cstring>
 #include <deque>
 #include <fstream>
