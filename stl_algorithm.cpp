@@ -13,9 +13,11 @@
 #include <unordered_map>
 #include <climits>
 #include <cfloat>
+#include <stack>        // std::stack
 
 using std::cin;
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::vector;
 using std::string;
@@ -177,26 +179,26 @@ int main()
 
     std::priority_queue<int> q;
 
-    for(int n : {1,8,5,6,3,4,0,9,7,2})
+    for(int n : {1,5,3,4,0,2})
         q.push(n);
 
-    print_queue(q);
+    print_queue(q); // 5 4 3 2 1 0
 
     std::priority_queue<int, vector<int>, std::greater<int> > q2;
 
-    for(int n : {1,8,5,6,3,4,0,9,7,2})
+    for(int n : {1,5,3,4,0,2})
         q2.push(n);
 
-    print_queue(q2);
+    print_queue(q2); // 0 1 2 3 4 5
 
     // Using lambda to compare elements.
     auto cmp = [](int left, int right) { return (left ^ 1) < (right ^ 1); };
     std::priority_queue<int, vector<int>, decltype(cmp)> q3(cmp);
 
-    for(int n : {1,8,5,6,3,4,0,9,7,2})
+    for(int n : {1,5,3,4,0,2})
         q3.push(n);
 
-    print_queue(q3);
+    print_queue(q3); // 4 5 2 3 0 1
 
   }
 
@@ -246,5 +248,21 @@ int main()
       UINT_MAX;
       SHRT_MAX;
       LONG_MAX;
+  }
+
+  { // stack::push/pop
+
+    std::stack<int> s;
+
+    for (int i=0; i<5; ++i) s.push(i);
+
+    cout << "Popping out elements...";
+    while (!s.empty())
+    {
+       cout << ' ' << s.top();
+       s.pop();
+    }
+    cout << endl;
+
   }
 }
