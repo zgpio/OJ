@@ -1,12 +1,86 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <algorithm> // push_heap, pop_heap
 #include <cmath> // fabs
 #include <limits>
+#include <queue> // priority_queue
 using namespace std;
 
 
-class Solution
+class Solution1;
+class Solution2
+{
+protected:
+    priority_queue<int, vector<int>, greater<int>> m_min;
+    priority_queue<int> m_max;
+
+public:
+    void Insert(int num)
+    {
+        if(((m_min.size() + m_max.size()) & 1) == 0)
+        {
+            if(m_max.size() > 0 && num < m_max.top())
+            {
+                m_max.push(num);
+
+                num = m_max.top();
+                m_max.pop();
+            }
+            m_min.push(num);
+            // cout << "left = " << m_max.size() << ", " << m_min.size() << endl;
+        }
+        else
+        {
+            if(m_min.size() > 0 && num > m_min.top())
+            {
+                m_min.push(num);
+                num=m_min.top();
+                m_min.pop();
+            }
+            m_max.push(num);
+        }
+    }
+
+    double GetMedian()
+    {
+        int size = m_min.size() + m_max.size();
+        if(size==0) return -1;
+        double median = 0;
+        if((size & 1) != 0)
+        {
+            median = (double) m_min.top();
+        }
+        else
+        {
+            median = (double) (m_max.top() + m_min.top()) / 2;
+        }
+        return median;
+    }
+};
+
+template <typename T>
+bool essentiallyEqual(T a, T b, T epsilon)
+{
+    return fabs(a - b) <= ((fabs(a) > fabs(b) ? fabs(b) : fabs(a)) * epsilon);
+}
+int main()
+{
+    Solution2 s;
+    int array[] = {5, 2, 3, 4, 1, 6, 7, 0, 8};
+    double res[] = {5, 3.5, 3, 3.5, 3, 3.5, 4, 3.5, 4};
+    vector<int> vec(array, array + 9);
+
+    for (int i = 0; i < vec.size(); i++)
+    {
+        s.Insert(vec[i]);
+        assert(essentiallyEqual(s.GetMedian(), res[i], std::numeric_limits<double>::epsilon()));
+        cout << s.GetMedian() << endl;
+    }
+    return 0;
+}
+
+/*
+class Solution1
 {
 protected:
     vector<int>     m_min; //数组中的后一半元素组成一个最小化堆
@@ -87,24 +161,4 @@ public:
         return median;
     }
 };
-
-template <typename T>
-bool essentiallyEqual(T a, T b, T epsilon)
-{
-    return fabs(a - b) <= ((fabs(a) > fabs(b) ? fabs(b) : fabs(a)) * epsilon);
-}
-int main()
-{
-    Solution s;
-    int array[] = {5, 2, 3, 4, 1, 6, 7, 0, 8};
-    double res[] = {5, 3.5, 3, 3.5, 3, 3.5, 4, 3.5, 4};
-    vector<int> vec(array, array + 9);
-
-    for (int i = 0; i < vec.size(); i++)
-    {
-        s.Insert(vec[i]);
-        assert(essentiallyEqual(s.GetMedian(), res[i], std::numeric_limits<double>::epsilon()));
-        cout << s.GetMedian() << endl;
-    }
-    return 0;
-}
+*/
