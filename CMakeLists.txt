@@ -12,7 +12,9 @@ SET(MAIN "main.cpp" CACHE STRING "Main Source file")
 # to generate a compile_commands.json usable by ycm and other tooling
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # string(REGEX REPLACE "/" "_" TARGET ${MAIN})
-get_filename_component(TARGET ${MAIN} NAME_WE)
+if(NOT TARGET)
+    get_filename_component(TARGET ${MAIN} NAME_WE)
+endif()
 
 # The optional <mode> keyword determines the type of message
 MESSAGE(STATUS "Target Name: ${TARGET}")
@@ -32,3 +34,5 @@ MESSAGE(STATUS "LC_SRCS: " ${LC_SRCS})
 add_definitions(-DLOCAL_JUDGE)
 # TODO 多个main文件共享lc编译的二进制文件
 add_executable(${TARGET} ${MAIN} ${LC_SRCS})
+# 清除缓存变量
+unset(TARGET CACHE)
