@@ -7,7 +7,7 @@
 #include <sstream>      // std::istringstream
 #include <algorithm>    // std::unique, std::distance, std::rotate,
                         // std::lower_bound, std::upper_bound, std::sort
-                        // std::merge
+                        // std::merge, std::min
 #include <vector>       // std::vector
 #include <queue>
 #include <unordered_map>
@@ -84,15 +84,17 @@ int main()
 
   // lower_bound/upper_bound example
   {
-    int a[] = {10,20,30,30,20,10,10,20};
-    vector<int> v(a,a+8);                          // 10 20 30 30 20 10 10 20
-    std::sort (v.begin(), v.end());                // 10 10 10 20 20 20 30 30
-    vector<int>::iterator low,up;
-    low=std::lower_bound (v.begin(), v.end(), 20); //          ^
-    up= std::upper_bound (v.begin(), v.end(), 20); //                   ^
-
-    cout << "lower_bound at position " << (low- v.begin()) << '\n';
-    cout << "upper_bound at position " << (up - v.begin()) << '\n';
+    vector<int> v{1,2,3,3,2,2};
+    std::sort(v.begin(), v.end());                      // 1 2 2 2 3 3
+    auto low1= std::lower_bound(v.begin(), v.end(), 2); //   ^
+    auto up1 = std::upper_bound(v.begin(), v.end(), 2); //         ^
+    auto low2= std::lower_bound(v.begin(), v.end(), 4); //             ^
+    auto up2 = std::upper_bound(v.begin(), v.end(), 4); //             ^
+    // 合法的插入位置 0,1,...,n
+    assert((low1 - v.begin())==1);
+    assert((up1 - v.begin())==4);
+    assert((low2 - v.begin())==6);
+    assert((up2 - v.begin())==6);
   }
 
   // rotate algorithm example
@@ -116,8 +118,8 @@ int main()
     //这里使用的都是堆化数组，也就是用数组来存储堆；
     //
 
-    int arr[] = {4,5,6,7,8,1};
-    vector<int>v(arr,arr + sizeof(arr) / sizeof(int));
+    int a[] = {4,5,6,7,8,1};
+    vector<int> v(a, a + sizeof(a) / sizeof(int));
 
     assert(!is_heap(v.begin(), v.end()));
 
@@ -248,6 +250,10 @@ int main()
       UINT_MAX;
       SHRT_MAX;
       LONG_MAX;
+      cout << std::min({3, 1, 2, 4}) << endl;
+      std::tuple<int, int> bounds = std::minmax({3, 1, 2, 4});
+      cout << "min:" << std::get<0>(bounds) << endl;
+      cout << "max:" << std::get<1>(bounds) << endl;
   }
 
   { // stack::push/pop
