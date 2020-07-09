@@ -1,11 +1,6 @@
 #include <iostream>
+#include "lc/list.h"
 using namespace std;
-
-struct ListNode {
-public:
-    int val;
-    struct ListNode *next;
-};
 
 //   pHead          p            pn
 //                             
@@ -38,32 +33,34 @@ public:
 
         return pHead;
     }
+    ListNode *ReverseListRecursive(ListNode *pHead)
+    {
+        if (pHead==nullptr || pHead->next==nullptr)
+            return pHead;
+        ListNode *newHead = ReverseListRecursive(pHead->next);
+        pHead->next->next = pHead;
+        pHead->next = nullptr;
+        return newHead;
+    }
 };
 
 int main()
 {
-    ListNode list[5];
-    list[0].val = 1; list[0].next = &list[1];
-    list[1].val = 2; list[1].next = &list[2];
-    list[2].val = 3; list[2].next = &list[3];
-    list[3].val = 4; list[3].next = &list[4];
-    list[4].val = 5; list[4].next = NULL;
-
-    ListNode *node = list;
-    while (node != NULL) {
-        cout << node->val;
-        node = node->next;
+    Solution s;
+    assert(s.ReverseList(NULL)==NULL);
+    {
+        ListNode *list = buildList({1, 2, 3, 4, 5});
+        printL(list);
+        ListNode *rlist = s.ReverseList(list);
+        printL(rlist);
     }
-    cout << endl;
-
-    Solution solu;
-    assert(solu.ReverseList(NULL)==NULL);
-    node = solu.ReverseList(list);
-    while (node != NULL) {
-        cout << node->val;
-        node = node->next;
+    {
+        ListNode *list = buildList({1, 2, 3, 4, 5});
+        printL(list);
+        ListNode *rlist = s.ReverseListRecursive(list);
+        printL(rlist);
     }
-    cout << endl;
+
 
     return 0;
 }
