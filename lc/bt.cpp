@@ -1,9 +1,9 @@
 #include "bt.h"
 #include <deque>
 #include <iostream>
-using namespace std;
 
-TreeNode *constructT(vector<int> a)
+// -1 表示 null
+TreeNode *constructT(std::vector<int> a)
 {
     int L = a.size();
     if (L == 0) return nullptr;
@@ -34,11 +34,16 @@ void preorder(TreeNode *t)
         preorder(t->right);
     }
 }
-void inorder(TreeNode *t)
+static void inorder_(TreeNode *t)
 {
     if (t != NULL) {
-        inorder(t->left);
+        inorder_(t->left);
         std::cout << t->val << " ";
-        inorder(t->right);
+        inorder_(t->right);
     }
+}
+void inorder(TreeNode *t)
+{
+    inorder_(t);
+    std::cout << std::endl;
 }
