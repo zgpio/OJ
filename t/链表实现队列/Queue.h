@@ -1,10 +1,10 @@
 #ifndef Queue_h
 #define Queue_h
 
+template<typename QDataType>
 class linkedQueue {
 public:
     linkedQueue();
-    typedef int QDataType; //数据类型
     void QueuePush(QDataType d);  //进队列（尾插）
     void QueuePop();              //出队列（头删）
     int QueueSize();              //求队列大小
@@ -14,8 +14,8 @@ public:
 private:
     typedef struct ListNode //通过链表实现的
     {
-        QDataType _data;
-        struct ListNode *_pNext;
+        QDataType data;
+        struct ListNode *pNext;
     } ListNode, *pListNode;
     pListNode _pHead; //头指针
     pListNode _pTail; //尾指针

@@ -3,68 +3,95 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-linkedQueue::pListNode linkedQueue::BuyNode(QDataType d)
+// 1. 队列非空时(1个元素, 即尾指针指向的结点):
+//    pHead        pTail
+//                  
+//  ┌───┬────┐   ┌───┬────┐
+//  │ 0 │next│──▶│val│next│──▶NULL
+//  └───┴────┘   └───┴────┘
+//    头结点       尾结点
+//
+// 2. 队列为空时:
+//  pHead/pTail
+//      
+//  ┌───┬────┐
+//  │ 0 │next│──▶NULL
+//  └───┴────┘
+// 头结点/尾结点
+
+// linkedQueue<QDataType>::pListNode 是私有的, 需要尾置
+template<typename QDataType>
+auto linkedQueue<QDataType>::BuyNode(QDataType d) -> linkedQueue<QDataType>::pListNode
 {
     pListNode p = (pListNode)malloc(sizeof(ListNode));
-    p->_data = d;
-    p->_pNext = NULL;
+    p->data = d;
+    p->pNext = NULL;
     return p;
 }
 
-linkedQueue::linkedQueue()
+template<typename QDataType>
+linkedQueue<QDataType>::linkedQueue()
 {
     _pHead = BuyNode(0);
     _pTail = _pHead;
 }
 
-void linkedQueue::QueuePush(QDataType d)
+template<typename QDataType>
+void linkedQueue<QDataType>::QueuePush(QDataType d)
 {
-    _pTail->_pNext = BuyNode(d);
-    _pTail = _pTail->_pNext;
+    _pTail->pNext = BuyNode(d);
+    _pTail = _pTail->pNext;
 }
 
-void linkedQueue::QueuePop()
+template<typename QDataType>
+void linkedQueue<QDataType>::QueuePop()
 {
-    pListNode dNode = _pHead->_pNext;
+    pListNode dNode = _pHead->pNext;
     if (dNode) {
-        _pHead->_pNext = dNode->_pNext;
-        if (_pHead->_pNext == NULL) {
+        _pHead->pNext = dNode->pNext;
+        if (_pHead->pNext == NULL) {
             _pTail = _pHead;
-        } //如果只有一个元素，删完后ptail会悬空
+        } //如果只有一个元素, 删完后ptail会悬空
         free(dNode);
     }
 }
 
-int linkedQueue::QueueSize()
+template<typename QDataType>
+int linkedQueue<QDataType>::QueueSize()
 {
-    pListNode pre = _pHead->_pNext;
+    pListNode pre = _pHead->pNext;
     int count = 0;
     while (pre) {
         count++;
-        pre = pre->_pNext;
+        pre = pre->pNext;
     }
     return count;
 }
-bool linkedQueue::QueueEmpty()
+template<typename QDataType>
+bool linkedQueue<QDataType>::QueueEmpty()
 {
-    return NULL == _pHead->_pNext;
+    return NULL == _pHead->pNext;
 }
-linkedQueue::QDataType linkedQueue::Front()
+template<typename QDataType>
+QDataType linkedQueue<QDataType>::Front()
 {
-    return _pHead->_pNext->_data;
+    return _pHead->pNext->data;
 }
-linkedQueue::QDataType linkedQueue::Back()
+template<typename QDataType>
+QDataType linkedQueue<QDataType>::Back()
 {
-    return _pTail->_data;
+    return _pTail->data;
 }
 
 int main(int argc, char *argv[])
 {
-    linkedQueue q;
+    linkedQueue<int> q;
     assert(q.QueueEmpty()==true);
     assert(q.QueueSize()==0);
     q.QueuePush(1);
     assert(q.QueueSize()==1);
+    assert(q.Back()==1);
+    assert(q.Front()==1);
     q.QueuePop();
     assert(q.QueueSize()==0);
     return 0;
