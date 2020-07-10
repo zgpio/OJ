@@ -41,7 +41,7 @@ void print()
     printf("==========\n");
 }
 
-// Queenes 只是用于存储棋盘
+// 特别注意: 递归调用之后不需要重置Queenes, 而标记数组通常需要重置.
 void eight_queen(int row)
 {
     for (int col = 0; col < 8; col++) {
