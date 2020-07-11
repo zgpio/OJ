@@ -15,20 +15,16 @@ public:
             return NULL;
         }
 
+        // 将链表分割为第一个结点和子链表，分别由pHead、p指向
         ListNode *p = pHead->next;
         pHead->next = NULL;
 
-        cout << pHead->val << " in list head now..." << endl;
-
-        ListNode *pn = NULL;
         while (p != NULL) {
-            pn = p->next; // 保存下一个结点的地址
+            ListNode *pn = p->next; // 保存下一个结点的地址
 
             p->next = pHead;
             pHead = p;
             p = pn;
-
-            cout << pHead->val << " in list head now..." << endl;
         }
 
         return pHead;
