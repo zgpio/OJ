@@ -41,6 +41,7 @@ vector<int> preorderTraversal(TreeNode* root) {
 
         root = s.top();
         s.pop();
+        // rv.push_back(root->val); // 中序遍历
         root = root->right;
     }
     return rv;
