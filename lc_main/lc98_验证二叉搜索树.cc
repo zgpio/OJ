@@ -28,6 +28,24 @@ public:
     }
 };
 
+// lc144. 二叉树的前序遍历
+vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> rv;
+    stack<TreeNode *> s;
+    while (!s.empty() || root) {
+        while (root) {
+            rv.push_back(root->val); // 先序遍历
+            s.push(root);
+            root = root->left;
+        }
+
+        root = s.top();
+        s.pop();
+        root = root->right;
+    }
+    return rv;
+}
+
 int main(int argc, char *argv[])
 {
     vector<pair<initializer_list<int>, bool>> cases = {
@@ -39,6 +57,10 @@ int main(int argc, char *argv[])
     Solution s;
     for (auto i : cases) {
         TreeNode *t = constructT(i.first);
+        for (auto x:preorderTraversal(t)) {
+            cout << x << " ";
+        }
+        cout << endl;
         assert(s.isValidBST(t) == i.second);
     }
     return 0;
