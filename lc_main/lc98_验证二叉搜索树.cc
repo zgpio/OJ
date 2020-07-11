@@ -29,21 +29,57 @@ public:
 };
 
 // lc144. 二叉树的前序遍历
-vector<int> preorderTraversal(TreeNode* root) {
+vector<int> inorderTraversal(TreeNode *root)
+{
     vector<int> rv;
     stack<TreeNode *> s;
     while (!s.empty() || root) {
         while (root) {
-            rv.push_back(root->val); // 先序遍历
             s.push(root);
             root = root->left;
         }
 
         root = s.top();
         s.pop();
-        // rv.push_back(root->val); // 中序遍历
+        rv.push_back(root->val); // 中序遍历
         root = root->right;
     }
+    return rv;
+}
+
+vector<int> preorderTraversal(TreeNode *root)
+{
+    vector<int> rv;
+    stack<TreeNode *> s;
+    s.push(root);
+    while (!s.empty()) {
+        root = s.top();
+        s.pop();
+        if (root) {
+            rv.push_back(root->val);
+            s.push(root->right);
+            s.push(root->left);
+        }
+    }
+    return rv;
+}
+
+vector<int> postorderTraversal(TreeNode *root)
+{
+    vector<int> rv;
+    stack<TreeNode *> s;
+    s.push(root);
+    while (!s.empty()) {
+        root = s.top();
+        s.pop();
+        if (root) {
+            rv.push_back(root->val); // 1.root  2.right  3.left
+            s.push(root->left);
+            s.push(root->right);
+        }
+    }
+    // 逆转之后: 1.left  2.right  3.root
+    reverse(rv.begin(), rv.end());
     return rv;
 }
 
@@ -58,7 +94,7 @@ int main(int argc, char *argv[])
     Solution s;
     for (auto i : cases) {
         TreeNode *t = constructT(i.first);
-        for (auto x:preorderTraversal(t)) {
+        for (auto x : preorderTraversal(t)) {
             cout << x << " ";
         }
         cout << endl;
