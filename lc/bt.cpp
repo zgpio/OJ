@@ -57,7 +57,7 @@ TreeNode *constructT(std::string a)
         m[i] = n;
     }
 
-    const int L = i;
+    const int L = i+1;
     if (L == 0) return nullptr;
     std::queue<TreeNode *> q;
     TreeNode *T = new TreeNode(m[0]);
@@ -68,12 +68,12 @@ TreeNode *constructT(std::string a)
 
         auto got = m.find(i * 2 + 1);
         if (got != m.end()) {
-            t->left = new TreeNode(m[i * 2 + 1]);
+            t->left = new TreeNode(got->second);
             q.push(t->left);
         }
         got = m.find(i * 2 + 2);
         if (got != m.end()) {
-            t->right = new TreeNode(m[i * 2 + 2]);
+            t->right = new TreeNode(got->second);
             q.push(t->right);
         }
     }
