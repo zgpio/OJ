@@ -25,10 +25,8 @@ public:
 int main()
 {
     Solution sol;
-    vector<int> a1 = {1, -1, 2, 3};
-    TreeNode *t1 = constructT(a1);
+    TreeNode *t1 = constructT("[1, null, 2, 3]");
     vector<int> ans1 = {1, 3, 2};
-    assert(sol.inorderTraversal(t1) == ans1);
     assert(sol.inorderTraversal(t1) == ans1);
 
     return 0;
