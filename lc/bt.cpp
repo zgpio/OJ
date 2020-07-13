@@ -1,25 +1,79 @@
 #include "bt.h"
 #include <queue>
+#include <unordered_map>
 #include <iostream>
 
-// -1 表示 null
-TreeNode *constructT(std::vector<int> a)
+using std::vector;
+using std::string;
+
+static vector<string> split(const string& str, const string& delim) {
+    vector<string> res;
+    if("" == str) return res;
+    char * strs = new char[str.length() + 1] ;
+    strcpy(strs, str.c_str());
+
+    const char * d = delim.c_str();
+
+    char *p = strtok(strs, d);
+    while (p) {
+        string s = p; // 分割得到的字符串转换为string类型
+        res.push_back(s);
+        p = strtok(NULL, d);
+    }
+
+    delete[] strs;
+    return res;
+}
+std::string& trim(std::string &s)
 {
-    int L = a.size();
+    if (s.empty())
+    {
+        return s;
+    }
+
+    s.erase(0,s.find_first_not_of(" "));
+    s.erase(s.find_last_not_of(" ") + 1);
+    return s;
+}
+
+// "[]"
+// 列表中的元素必须是int类型或null, 用逗号分隔
+// 只支持方括号
+TreeNode *constructT(std::string a)
+{
+    std::unordered_map<int, int> m;
+    int spos = a.find_last_of("[");
+    int epos = a.find_first_of("]");
+    a = a.substr(spos+1, epos-(spos+1));
+    auto strs = split(a, ",");
+    int i = -1;
+    for (auto &s:strs)
+    {
+        i++;
+        s = trim(s);
+        if (s=="null")
+            continue;
+        int n = atoi(s.c_str());
+        m[i] = n;
+    }
+
+    const int L = i;
     if (L == 0) return nullptr;
     std::queue<TreeNode *> q;
-    TreeNode *T = new TreeNode(a[0]);
+    TreeNode *T = new TreeNode(m[0]);
     q.push(T);
     for (int i = 0; i * 2 + 1 < L; ++i) {
         TreeNode *t = q.front();
         q.pop();
 
-        if (a[i * 2 + 1] != -1) {
-            t->left = new TreeNode(a[i * 2 + 1]);
+        auto got = m.find(i * 2 + 1);
+        if (got != m.end()) {
+            t->left = new TreeNode(m[i * 2 + 1]);
             q.push(t->left);
         }
-        if (i * 2 + 2 < L && a[i * 2 + 2] != -1) {
-            t->right = new TreeNode(a[i * 2 + 2]);
+        got = m.find(i * 2 + 2);
+        if (got != m.end()) {
+            t->right = new TreeNode(m[i * 2 + 2]);
             q.push(t->right);
         }
     }

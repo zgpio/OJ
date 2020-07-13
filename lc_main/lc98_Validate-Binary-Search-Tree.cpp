@@ -31,16 +31,12 @@ public:
 int main()
 {
     Solution sol;
-    vector<int> a = {5, 1, 4, -1, -1, 3, 6};
-    TreeNode *ta = constructT(a);
-    vector<int> a2 = {1, 1};
-    TreeNode *ta2 = constructT(a2);
-    vector<int> a3 = {10, 5, 15, -1, -1, 6, 20};
-    TreeNode *ta3 = constructT(a3);
+    TreeNode *ta = constructT("[5, 1, 4, null, null, 3, 6]");
+    TreeNode *ta2 = constructT("[1, 1]");
+    TreeNode *ta3 = constructT("[10, 5, 15, null, null, 6, 20]");
     preorder(ta3);
     std::cout << std::endl;
     inorder(ta3);
-    std::cout << std::endl;
 
     TreeNode *nul = nullptr;
     assert(sol.isValidBST(ta) == false);

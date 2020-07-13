@@ -9,7 +9,7 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-TreeNode *constructT(std::vector<int> a);
+TreeNode *constructT(std::string a);
 void preorder(TreeNode *t);
 void inorder(TreeNode *t);
 
