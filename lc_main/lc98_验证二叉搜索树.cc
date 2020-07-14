@@ -28,7 +28,7 @@ public:
     }
 };
 
-// lc144. 二叉树的前序遍历
+// lc94. 二叉树的中序遍历
 vector<int> inorderTraversal(TreeNode *root)
 {
     vector<int> rv;
@@ -47,6 +47,8 @@ vector<int> inorderTraversal(TreeNode *root)
     return rv;
 }
 
+// 前序、后序遍历遵循同样的范式，容易记忆
+// lc144. 二叉树的前序遍历
 vector<int> preorderTraversal(TreeNode *root)
 {
     vector<int> rv;
@@ -64,6 +66,7 @@ vector<int> preorderTraversal(TreeNode *root)
     return rv;
 }
 
+// lc145. 二叉树的后序遍历
 vector<int> postorderTraversal(TreeNode *root)
 {
     vector<int> rv;
