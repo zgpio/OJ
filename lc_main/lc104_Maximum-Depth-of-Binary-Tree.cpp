@@ -29,16 +29,15 @@ public:
 int main()
 {
     Solution sol;
-    vector<int> v1 = {3, 9, 20, -1, -1, 15, 7};
-    TreeNode *t1 = constructT(v1);
-    assert(sol.maxDepth(t1) == 3);
+    vector<pair<string, int>> cases = {
+        {"[3, 9, 20, null, null, 15, 7]", 3},
+        {"[]", 0},
+        {"[1]", 1}
+    };
+    for (auto c : cases) {
+        TreeNode *t1 = constructT(c.first);
+        assert(sol.maxDepth(t1) == c.second);
+    }
 
-    vector<int> v2 = {};
-    TreeNode *t2 = constructT(v2);
-    assert(sol.maxDepth(t2) == 0);
-
-    vector<int> v3 = {1};
-    TreeNode *t3 = constructT(v3);
-    assert(sol.maxDepth(t3) == 1);
     return 0;
 }

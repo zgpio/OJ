@@ -38,12 +38,14 @@ std::string& trim(std::string &s)
 
 // "[]"
 // 列表中的元素必须是int类型或null, 用逗号分隔
-// 只支持方括号
+// 支持方括号/花括号
 TreeNode *constructT(std::string a)
 {
     std::unordered_map<int, int> m;
     int spos = a.find_last_of("[");
+    if (spos==string::npos) spos = a.find_last_of("{");
     int epos = a.find_first_of("]");
+    if (epos==string::npos) epos = a.find_first_of("}");;
     a = a.substr(spos+1, epos-(spos+1));
     auto strs = split(a, ",");
     int i = -1;

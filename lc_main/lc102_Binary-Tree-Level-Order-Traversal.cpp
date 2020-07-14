@@ -44,14 +44,12 @@ public:
 int main()
 {
     Solution sol;
-    vector<int> v1 = {3, 9, 20, -1, -1, 15, 7};
     vector<vector<int>> a1 = {{3}, {9, 20}, {15, 7}};
-    TreeNode *t1 = constructT(v1);
+    TreeNode *t1 = constructT("[3, 9, 20, null, null, 15, 7]");
     assert(sol.levelOrder(t1) == a1);
 
-    vector<int> v2 = {};
     vector<vector<int>> a2 = {};
-    TreeNode *t2 = constructT(v2);
+    TreeNode *t2 = constructT("[]");
     assert(sol.levelOrder(t2) == a2);
     return 0;
 }

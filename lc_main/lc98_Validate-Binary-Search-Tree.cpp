@@ -1,7 +1,6 @@
-#include "lc/lc.h"
 #include "lc/bt.h"
+#include "lc/lc.h"
 using namespace std;
-
 
 class Solution {
     vector<int> a;
@@ -27,21 +26,23 @@ public:
     }
 };
 
-
 int main()
 {
     Solution sol;
-    TreeNode *ta = constructT("[5, 1, 4, null, null, 3, 6]");
-    TreeNode *ta2 = constructT("[1, 1]");
-    TreeNode *ta3 = constructT("[10, 5, 15, null, null, 6, 20]");
-    preorder(ta3);
-    std::cout << std::endl;
-    inorder(ta3);
+    assert(sol.isValidBST(nullptr) == true);
+    vector<pair<string, bool>> cases = {
+        {"[5, 1, 4, null, null, 3, 6]", false},
+        {"[1, 1]", false},
+        {"[10, 5, 15, null, null, 6, 20]", false},
+        {"[]", true}
+    };
+    for (auto c : cases) {
+        TreeNode *ta = constructT(c.first);
+        preorder(ta);
+        std::cout << std::endl;
+        inorder(ta);
+        assert(sol.isValidBST(ta) == c.second);
+    }
 
-    TreeNode *nul = nullptr;
-    assert(sol.isValidBST(ta) == false);
-    assert(sol.isValidBST(ta2) == false);
-    assert(sol.isValidBST(ta3) == false);
-    assert(sol.isValidBST(nul) == true);
     return 0;
 }

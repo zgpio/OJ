@@ -85,12 +85,12 @@ vector<int> postorderTraversal(TreeNode *root)
 
 int main(int argc, char *argv[])
 {
-    vector<pair<initializer_list<int>, bool>> cases = {
-        {{1, 2, 3, 4, 5, 6}, false},
-        {{5, 1, 4, -1, -1, 3, 6}, false},
-        {{1, 1}, false},
-        {{1, -1, 1}, false},
-        {{10, 5, 15, -1, -1, 6, 20}, false}};
+    vector<pair<string, bool>> cases = {
+        {"{1, 2, 3, 4, 5, 6}", false},
+        {"{5, 1, 4, null, null, 3, 6}", false},
+        {"{1, 1}", false},
+        {"{1, null, 1}", false},
+        {"{10, 5, 15, null, null, 6, 20}", false}};
     Solution s;
     for (auto i : cases) {
         TreeNode *t = constructT(i.first);

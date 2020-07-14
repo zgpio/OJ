@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
         //     6   2   0   8
         //        / \
         //       7   4
-        TreeNode * t = constructT({3,5,1,6,2,0,8,-1,-1,7,4});
+        TreeNode * t = constructT("[3,5,1,6,2,0,8,-1,-1,7,4]");
         inorder(t);
         // 5 1 -> 3
         assert(s.lowestCommonAncestor(t, t->left, t->right)==t);

@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     //   15   7
 
     Solution s;
-    TreeNode *t = constructT({3, 9, 20, -1, -1, 15, 7});
+    TreeNode *t = constructT("[3, 9, 20, -1, -1, 15, 7]");
     assert(s.maxDepth(t) == 3);
 
     return 0;
