@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm> // binary_search
 using namespace std;
 
 //返回target在有序向量A中出现的第一个位置
@@ -46,6 +47,24 @@ int upper_bound(vector<int> &A, int target)
     return r;
 }
 
+// lc704. 二分查找
+int my_binary_search(vector<int> &A, int t)
+{
+    int l = 0, r = A.size();
+    while (l < r) {
+        int m = (l + r) / 2;
+        if (A[m] == t)
+            return m;
+        else if (A[m] > t) {
+            r = m;
+        }
+        else {
+            l = m + 1;
+        }
+    }
+    return -1;
+}
+
 // 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR] 闭区间
 int *generateRandomArray(int n, int rangeL, int rangeR)
 {
@@ -66,7 +85,13 @@ int main()
         int *a = generateRandomArray(len, l, r);
         vector<int> A(a, a + len);
         sort(A.begin(), A.end());
-        int gt = std::lower_bound(A.begin(), A.end(), target) - A.begin();
+        if (binary_search(A.begin(), A.end(), target)==false)
+        {
+            assert(my_binary_search(A, target)==-1);
+        }
+        else
+            assert(my_binary_search(A, target)>=0);
+        int gt = lower_bound(A.begin(), A.end(), target) - A.begin();
         int pred = lower_bound(A, target);
         if (gt != pred) {
             printf("pred:%d, gt:%d, target:%d\n", pred, gt, target);

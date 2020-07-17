@@ -226,10 +226,10 @@ int main()
   }
   { // <climits> <cfloat>
       // INT_MAX, INT_MIN, UINT_MAX, SHRT_MAX, LONG_MAX
-      cout << min({3, 1, 2, 4}) << endl;
+      assert(min({3, 1, 2, 4})==1);
       tuple<int, int> bounds = minmax({3, 1, 2, 4});
-      cout << "min:" << get<0>(bounds) << endl;
-      cout << "max:" << get<1>(bounds) << endl;
+      assert(get<0>(bounds)==1);
+      assert(get<1>(bounds)==4);
   }
 
   { // stack::push/pop
