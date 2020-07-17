@@ -94,16 +94,14 @@ int main()
     assert((up2 - v.begin())==6);
   }
 
-  // rotate algorithm example
+  // rotate algorithm
   {
     vector<int> v{1, 2, 3, 4, 5};
 
-    rotate(v.begin(), v.begin()+3, v.end()); // 4 5 1 2 3
+    rotate(v.begin(), v.begin()+3, v.end());
 
-    cout << "rotate:";
-    for (auto i:v)
-      cout << ' ' << i;
-    cout << '\n';
+    vector<int> t{4, 5, 1, 2, 3};
+    assert(v==t);
   }
 
   // STL_heap
@@ -136,39 +134,29 @@ int main()
     // 堆排序: 最大堆 -> 升序序列
     sort_heap(v.begin(), v.end());
     assert(!is_heap(v.begin(), v.end()));
-    cout << "STL_heap: ";
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << " ";
-    }
-    cout << endl;
+    vector<int> gt{1, 4, 5, 6, 7, 8};
+    assert(gt==v);
 
   }
-  // unique algorithm example
+  // unique algorithm
   {
-
     auto f = [](int i, int j) -> bool {
       return (i==j);
     };
 
-    int a[] = {0,1,1,1,3,3,1,1,0};     // 0 1 1 1 3 3 1 1 0
+    int a[] = {0,1,1,1,3,3,1,1,0};        // 0 1 1 1 3 3 1 1 0
     vector<int> v (a,a+9);
 
     // using default comparison:
-    vector<int>::iterator it;
-    it = unique(v.begin(), v.end());   // 0 1 3 1 0 ? ? ? ?
-                                       //           ^
-
-    v.resize(distance(v.begin(),it));  // 0 1 3 1 0
+    auto it = unique(v.begin(), v.end()); // 0 1 3 1 0 ? ? ? ?
+                                          //           ^
+    v.resize(distance(v.begin(),it));     // 0 1 3 1 0
 
     // using predicate comparison:
-    unique(v.begin(), v.end(), f);     // (no changes)
+    unique(v.begin(), v.end(), f);        // (no changes)
 
-    cout << "unique:";
-    for (it=v.begin(); it!=v.end(); ++it)
-      cout << ' ' << *it;
-    cout << '\n';
-
+    vector<int> t{0, 1, 3, 1, 0};
+    assert(t==v);
   }
   {
 
@@ -197,7 +185,7 @@ int main()
 
   }
 
-  { // merge algorithm example
+  { // merge algorithm
 
     int first[] = {5,10,15,20,25};
     int second[] = {50,40,30,20,10};
@@ -205,12 +193,11 @@ int main()
 
     sort(first, first+5);
     sort(second, second+5);
+    // 合并两个有序数组
     merge(first, first+5, second, second+5, v.begin());
 
-    cout << "合并两个有序数组:";
-    for (vector<int>::iterator it=v.begin(); it!=v.end(); ++it)
-      cout << ' ' << *it;
-    cout << '\n';
+    vector<int> gt{5, 10, 10, 15, 20, 20, 25, 30, 40, 50};
+    assert(gt==v);
 
   }
   { // unordered_map::find
@@ -238,11 +225,7 @@ int main()
 
   }
   { // <climits> <cfloat>
-      INT_MAX;
-      INT_MIN;
-      UINT_MAX;
-      SHRT_MAX;
-      LONG_MAX;
+      // INT_MAX, INT_MIN, UINT_MAX, SHRT_MAX, LONG_MAX
       cout << min({3, 1, 2, 4}) << endl;
       tuple<int, int> bounds = minmax({3, 1, 2, 4});
       cout << "min:" << get<0>(bounds) << endl;
