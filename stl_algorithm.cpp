@@ -1,26 +1,22 @@
 // #include <bits/stdc++.h>
 #include <numeric>
-#include <string>
-#include <functional>
-#include <iterator>
-#include <iostream>     // std::cout
-#include <sstream>      // std::istringstream
-#include <algorithm>    // std::unique, std::distance, std::rotate,
-                        // std::lower_bound, std::upper_bound, std::sort
-                        // std::merge, std::min
-#include <vector>       // std::vector
+#include <string>       // to_string
+#include <functional>   // greater, less
+#include <iterator>     // next
+#include <iostream>     // cin, cout, cerr, endl
+#include <sstream>      // istringstream
+#include <algorithm>    // unique, distance, rotate, lower_bound, upper_bound, sort, merge, min
+#include <vector>       // vector
+#include <tuple>        // tuple
 #include <queue>
 #include <unordered_map>
 #include <climits>
 #include <cfloat>
-#include <stack>        // std::stack
+#include <stack>        // stack
 
-using std::cin;
-using std::cout;
-using std::cerr;
-using std::endl;
 using std::vector;
 using std::string;
+using namespace std;
 template<typename T> void print_queue(T& q) {
     while(!q.empty()) {
         cout << q.top() << " ";
@@ -30,44 +26,43 @@ template<typename T> void print_queue(T& q) {
 }
 int main()
 {
-  /// std::accumulate
+  /// accumulate
   {
     vector<int> v{1, 2, 3};
 
-    int sum = std::accumulate(v.begin(), v.end(), 0);
+    int sum = accumulate(v.begin(), v.end(), 0);
 
-    int product = std::accumulate(v.begin(), v.end(), 1, std::multiplies<int>());
+    int product = accumulate(v.begin(), v.end(), 1, multiplies<int>());
 
     auto dash_fold = [](string a, int b) {
-                         return std::move(a) + '-' + std::to_string(b);
+                         return move(a) + '-' + to_string(b);
                      };
 
-    string s = std::accumulate(std::next(v.begin()), v.end(),
-                               std::to_string(v[0]), // start with first element
-                               dash_fold);
+    string s = accumulate(next(v.begin()), v.end(),
+                          to_string(v[0]), // start with first element
+                          dash_fold);
 
     // Right fold using reverse iterators
-    string rs = std::accumulate(std::next(v.rbegin()), v.rend(),
-                                std::to_string(v.back()), // start with last element
-                                dash_fold);
+    string rs = accumulate(next(v.rbegin()), v.rend(),
+                           to_string(v.back()), // start with last element
+                           dash_fold);
 
-    cout << "sum: " << sum << '\n'
-         << "product: " << product << '\n'
+    cout << "累加: " << sum << '\n'
+         << "累积: " << product << '\n'
          << "dash-separated string: " << s << '\n'
          << "dash-separated string (right-folded): " << rs << '\n';
   }
 
-  /// std::partial_sum
+  /// partial_sum
   {
     vector<int> v = {2, 2, 2, 2, 2}; // or vector<int>v(5, 2);
 
-    cout << "The first 5 偶数 are: ";
-    std::partial_sum(v.begin(), v.end(),
-                     std::ostream_iterator<int>(cout, " "));
+    cout << "前5个偶数: ";
+    partial_sum(v.begin(), v.end(), ostream_iterator<int>(cout, " "));
     cout << '\n';
 
-    std::partial_sum(v.begin(), v.end(), v.begin(), std::multiplies<int>());
-    cout << "The first 5 powers of 2 are: ";
+    partial_sum(v.begin(), v.end(), v.begin(), multiplies<int>());
+    cout << "前5个2的幂: ";
     for (auto n : v) {
         cout << n << " ";
     }
@@ -76,21 +71,23 @@ int main()
   }
   {
     string s = "231";
-    std::sort(s.begin(), s.end());
+    sort(s.begin(), s.end());
     do {
         cout << s << '\n';
-    } while(std::next_permutation(s.begin(), s.end()));
+    } while(next_permutation(s.begin(), s.end()));
   }
 
-  // lower_bound/upper_bound example
+  // lower_bound/upper_bound
   {
     vector<int> v{1,2,3,3,2,2};
-    std::sort(v.begin(), v.end());                      // 1 2 2 2 3 3
-    auto low1= std::lower_bound(v.begin(), v.end(), 2); //   ^
-    auto up1 = std::upper_bound(v.begin(), v.end(), 2); //         ^
-    auto low2= std::lower_bound(v.begin(), v.end(), 4); //             ^
-    auto up2 = std::upper_bound(v.begin(), v.end(), 4); //             ^
+    sort(v.begin(), v.end());                      // 1 2 2 2 3 3
+    auto low1= lower_bound(v.begin(), v.end(), 2); //   ^
+    auto up1 = upper_bound(v.begin(), v.end(), 2); //         ^
+    auto low2= lower_bound(v.begin(), v.end(), 4); //             ^
+    auto up2 = upper_bound(v.begin(), v.end(), 4); //             ^
     // 合法的插入位置 0,1,...,n
+    assert(binary_search(v.begin(), v.end(), 2)==true);
+    assert(binary_search(v.begin(), v.end(), 4)==false);
     assert((low1 - v.begin())==1);
     assert((up1 - v.begin())==4);
     assert((low2 - v.begin())==6);
@@ -101,8 +98,8 @@ int main()
   {
     vector<int> v{1, 2, 3, 4, 5};
 
-    std::rotate(v.begin(),v.begin()+3,v.end()); // 4 5 1 2 3
-    // print out content:
+    rotate(v.begin(), v.begin()+3, v.end()); // 4 5 1 2 3
+
     cout << "rotate:";
     for (auto i:v)
       cout << ' ' << i;
@@ -111,12 +108,9 @@ int main()
 
   // STL_heap
   {
-    using namespace std;
-    //
     //堆的插入是在尾部，堆的删除是在顶部；
     //插入删除之后都需要重新调整堆。
     //这里使用的都是堆化数组，也就是用数组来存储堆；
-    //
 
     int a[] = {4,5,6,7,8,1};
     vector<int> v(a, a + sizeof(a) / sizeof(int));
@@ -157,20 +151,19 @@ int main()
       return (i==j);
     };
 
-    int a[] = {0,1,1,1,3,3,1,1,0};           // 0 1 1 1 3 3 1 1 0
+    int a[] = {0,1,1,1,3,3,1,1,0};     // 0 1 1 1 3 3 1 1 0
     vector<int> v (a,a+9);
 
     // using default comparison:
     vector<int>::iterator it;
-    it = std::unique (v.begin(), v.end());   // 0 1 3 1 0 ? ? ? ?
-                                             //           ^
+    it = unique(v.begin(), v.end());   // 0 1 3 1 0 ? ? ? ?
+                                       //           ^
 
-    v.resize( std::distance(v.begin(),it) ); // 0 1 3 1 0
+    v.resize(distance(v.begin(),it));  // 0 1 3 1 0
 
     // using predicate comparison:
-    std::unique (v.begin(), v.end(), f);   // (no changes)
+    unique(v.begin(), v.end(), f);     // (no changes)
 
-    // print out content:
     cout << "unique:";
     for (it=v.begin(); it!=v.end(); ++it)
       cout << ' ' << *it;
@@ -179,14 +172,14 @@ int main()
   }
   {
 
-    std::priority_queue<int> q;
+    priority_queue<int> q;
 
     for(int n : {1,5,3,4,0,2})
         q.push(n);
 
     print_queue(q); // 5 4 3 2 1 0
 
-    std::priority_queue<int, vector<int>, std::greater<int> > q2;
+    priority_queue<int, vector<int>, greater<int> > q2;
 
     for(int n : {1,5,3,4,0,2})
         q2.push(n);
@@ -195,7 +188,7 @@ int main()
 
     // Using lambda to compare elements.
     auto cmp = [](int left, int right) { return (left ^ 1) < (right ^ 1); };
-    std::priority_queue<int, vector<int>, decltype(cmp)> q3(cmp);
+    priority_queue<int, vector<int>, decltype(cmp)> q3(cmp);
 
     for(int n : {1,5,3,4,0,2})
         q3.push(n);
@@ -210,11 +203,11 @@ int main()
     int second[] = {50,40,30,20,10};
     vector<int> v(10);
 
-    std::sort (first,first+5);
-    std::sort (second,second+5);
-    std::merge (first,first+5,second,second+5,v.begin());
+    sort(first, first+5);
+    sort(second, second+5);
+    merge(first, first+5, second, second+5, v.begin());
 
-    cout << "The resulting vector contains:";
+    cout << "合并两个有序数组:";
     for (vector<int>::iterator it=v.begin(); it!=v.end(); ++it)
       cout << ' ' << *it;
     cout << '\n';
@@ -222,7 +215,7 @@ int main()
   }
   { // unordered_map::find
 
-    std::unordered_map<string,double> m = {
+    unordered_map<string,double> m = {
        {"mom",5.4},
        {"dad",6.1} };
 
@@ -230,11 +223,11 @@ int main()
     assert(!m.empty());
 
     string str="mom";
-    std::istringstream is(str);
+    istringstream is(str);
     string input;
     getline (is,input); // cin
 
-    std::unordered_map<string,double>::const_iterator got = m.find (input);
+    unordered_map<string,double>::const_iterator got = m.find (input);
 
     if ( got == m.end() )
       cout << "not found:" << input;
@@ -250,15 +243,15 @@ int main()
       UINT_MAX;
       SHRT_MAX;
       LONG_MAX;
-      cout << std::min({3, 1, 2, 4}) << endl;
-      std::tuple<int, int> bounds = std::minmax({3, 1, 2, 4});
-      cout << "min:" << std::get<0>(bounds) << endl;
-      cout << "max:" << std::get<1>(bounds) << endl;
+      cout << min({3, 1, 2, 4}) << endl;
+      tuple<int, int> bounds = minmax({3, 1, 2, 4});
+      cout << "min:" << get<0>(bounds) << endl;
+      cout << "max:" << get<1>(bounds) << endl;
   }
 
   { // stack::push/pop
 
-    std::stack<int> s;
+    stack<int> s;
 
     for (int i=0; i<5; ++i) s.push(i);
 
