@@ -1,6 +1,19 @@
 #include <iostream>
 using namespace std;
 
+// 队列一个元素
+//    front  rear
+//          
+// ┌───┬───┬───┬───┐
+// │   │ A │   │   │
+// └───┴───┴───┴───┘
+//
+// 队列满
+// rear front
+//      
+// ┌───┬───┬───┬───┐
+// │   │ A │ B │ C │
+// └───┴───┴───┴───┘
 class MyCircularQueue {
 public:
     // Initialize your data structure here. Set the size of the queue to be k.
