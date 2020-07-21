@@ -28,7 +28,24 @@ public:
             return 0;
     }
 };
-
+int reverse(int x)
+{
+    char s[32];
+    bool neg = false;
+    long long X = x;
+    if (X < 0) {
+        neg = true;
+        X = -X;
+    }
+    sprintf(s, "%lld", X);
+    string a(s);
+    std::reverse(a.begin(), a.end());
+    long long rv;
+    sscanf(a.c_str(), "%lld", &rv);
+    if (neg) rv = -rv;
+    if (rv > INT32_MAX || rv < INT32_MIN) return 0;
+    return rv;
+}
 int main()
 {
     Solution sol;
