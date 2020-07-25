@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 // ... 26^1 26^0
+// 10进制0~9, 26进制0~25, 但是1~26分别对应A~Z, 存在偏移1
 class Solution
 {
    public:
