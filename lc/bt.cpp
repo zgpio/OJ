@@ -44,8 +44,10 @@ TreeNode *constructT(std::string a)
     std::unordered_map<int, int> m;
     int spos = a.find_last_of("[");
     if (spos==string::npos) spos = a.find_last_of("{");
+    if (spos==string::npos) spos = a.find_last_of("(");
     int epos = a.find_first_of("]");
     if (epos==string::npos) epos = a.find_first_of("}");;
+    if (epos==string::npos) epos = a.find_first_of(")");;
     a = a.substr(spos+1, epos-(spos+1));
     auto strs = split(a, ",");
     int i = -1;
