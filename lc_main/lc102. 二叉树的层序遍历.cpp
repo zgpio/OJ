@@ -14,22 +14,19 @@ public:
         int n = 1;
         vector<vector<int>> ans;
         while (!q.empty()) {
-            int cnt = 0;
             vector<int> layer;
             while (n--) {
                 TreeNode *t = q.front();
                 q.pop();
                 if (t->left) {
                     q.push(t->left);
-                    cnt++;
                 }
                 if (t->right) {
                     q.push(t->right);
-                    cnt++;
                 }
                 layer.push_back(t->val);
             }
-            n = cnt;
+            n = q.size();
             ans.push_back(layer);
         }
         for (auto i : ans) {
