@@ -1,5 +1,5 @@
-#include <iostream>
 #include "lc/list.h"
+#include <iostream>
 using namespace std;
 
 //   pHead          p            pn
@@ -31,8 +31,7 @@ public:
     }
     ListNode *ReverseListRecursive(ListNode *pHead)
     {
-        if (pHead==nullptr || pHead->next==nullptr)
-            return pHead;
+        if (pHead == nullptr || pHead->next == nullptr) return pHead;
         ListNode *newHead = ReverseListRecursive(pHead->next);
         pHead->next->next = pHead;
         pHead->next = nullptr;
@@ -40,10 +39,30 @@ public:
     }
 };
 
+// 92. 反转链表 II
+ListNode *reverseBetween(ListNode *head, int m, int n)
+{
+    ListNode hair(0);
+    hair.next = head;
+    ListNode *l = &hair;
+    int cnt = n - m;
+    while (l->next && --m) {
+        l = l->next;
+    }
+    if (!l->next) return hair.next;
+    ListNode *tail = l->next;
+    while (cnt-- && tail->next) {
+        ListNode *t = tail->next;
+        tail->next = tail->next->next;
+        t->next = l->next;
+        l->next = t;
+    }
+    return hair.next;
+}
 int main()
 {
     Solution s;
-    assert(s.ReverseList(NULL)==NULL);
+    assert(s.ReverseList(NULL) == NULL);
     {
         ListNode *list = buildList({1, 2, 3, 4, 5});
         printL(list);
@@ -56,7 +75,18 @@ int main()
         ListNode *rlist = s.ReverseListRecursive(list);
         printL(rlist);
     }
-
+    {
+        ListNode *list = buildList({1, 2, 3, 4, 5});
+        printL(list);
+        ListNode *rlist = reverseBetween(list, 2, 4);
+        printL(rlist);
+    }
+    {
+        ListNode *list = buildList({5});
+        printL(list);
+        ListNode *rlist = reverseBetween(list, 1, 1);
+        printL(rlist);
+    }
 
     return 0;
 }
