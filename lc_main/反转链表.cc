@@ -1,4 +1,5 @@
 #include "lc/list.h"
+#include <stack>
 #include <iostream>
 using namespace std;
 
@@ -59,6 +60,29 @@ ListNode *reverseBetween(ListNode *head, int m, int n)
     }
     return hair.next;
 }
+
+// 使用栈, 空间复杂度不是O(1)
+ListNode *reverseBetween2(ListNode *head, int m, int n)
+{
+    ListNode *h = head;
+    stack<int> s;
+    int cnt = m;
+    while (--cnt)
+        h = h->next;
+    ListNode *p = h;
+    cnt = n - m + 1;
+    while (cnt--) {
+        s.push(p->val);
+        p = p->next;
+    }
+    while (!s.empty()) {
+        h->val = s.top();
+        h = h->next;
+        s.pop();
+    }
+
+    return head;
+}
 int main()
 {
     Solution s;
@@ -86,6 +110,16 @@ int main()
         printL(list);
         ListNode *rlist = reverseBetween(list, 1, 1);
         printL(rlist);
+    }
+    {
+        ListNode *test = buildList({1, 2, 3, 4, 5});
+        int m = 2, n = 4;
+        ListNode *ans = buildList({1, 4, 3, 2, 5});
+
+        printL(test);
+        ListNode *pred = reverseBetween2(test, m, n);
+        equaList(ans, pred);
+        printL(pred);
     }
 
     return 0;
