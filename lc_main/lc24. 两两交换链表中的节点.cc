@@ -27,6 +27,6 @@ int main(int argc, char* argv[])
     ListNode* l = buildList({1, 2, 3, 4});
     ListNode* gt = buildList({2, 1, 4, 3});
     l = s.swapPairs(l);
-    equaList(l, gt);
+    assert(equal_list(l, gt));
     return 0;
 }

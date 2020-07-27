@@ -22,7 +22,7 @@ void printL(ListNode *h)
     std::cout << std::endl;
 }
 
-bool equaList(ListNode *a, ListNode *b)
+bool equal_list(ListNode *a, ListNode *b)
 {
     while (a && b) {
         if (a->val != b->val) return false;

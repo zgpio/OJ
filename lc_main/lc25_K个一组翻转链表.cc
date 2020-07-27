@@ -44,13 +44,13 @@ int main(int argc, char *argv[])
         auto *l = s.reverseKGroup(buildList({1, 2, 3, 4, 5}), 2);
         auto *gt = buildList({2, 1, 4, 3, 5});
         printL(l);
-        equaList(l, gt);
+        assert(equal_list(l, gt));
     }
     {
         auto *l = s.reverseKGroup(buildList({1, 2, 3, 4, 5}), 3);
         auto *gt = buildList({3, 2, 1, 4, 5});
         printL(l);
-        equaList(l, gt);
+        assert(equal_list(l, gt));
     }
 
     return 0;

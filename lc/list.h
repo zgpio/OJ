@@ -55,6 +55,6 @@ inline int listLen(ListNode *p)
 
 ListNode *buildList(std::vector<int> a);
 void printL(ListNode *h);
-bool equaList(ListNode *a, ListNode *b);
+bool equal_list(ListNode *a, ListNode *b);
 
 #endif /* ifndef LCLIB */

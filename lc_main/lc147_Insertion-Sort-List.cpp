@@ -47,13 +47,13 @@ int main()
     Solution sol;
     ListNode *t1 = buildList(vector<int>{4, 2, 1, 3});
     ListNode *a1 = buildList(vector<int>{1, 2, 3, 4});
-    assert(equaList(a1, a1));
-    assert(equaList(t1, t1));
-    assert(equaList(sol.insertionSortList(t1), a1));
+    assert(equal_list(a1, a1));
+    assert(equal_list(t1, t1));
+    assert(equal_list(sol.insertionSortList(t1), a1));
 
     ListNode *t2 = buildList(vector<int>{-1, 5, 3, 4, 0});
     ListNode *a2 = buildList(vector<int>{-1, 0, 3, 4, 5});
-    assert(equaList(sol.insertionSortList(t2), a2));
+    assert(equal_list(sol.insertionSortList(t2), a2));
 
     // test swapNode
     ListNode *t3 = buildList({-1, 1, 2, 3, 4, 5});

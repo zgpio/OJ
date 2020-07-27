@@ -118,7 +118,7 @@ int main()
 
         printL(test);
         ListNode *pred = reverseBetween2(test, m, n);
-        equaList(ans, pred);
+        assert(equal_list(ans, pred));
         printL(pred);
     }
 

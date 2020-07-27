@@ -43,8 +43,8 @@ int main()
     ListNode *a1 = buildList({1, 2, 5});
     ListNode *t2 = buildList({1, 1, 1, 2, 3});
     ListNode *a2 = buildList({2, 3});
-    assert(equaList(t1, t1));
-    assert(equaList(sol.deleteDuplicates(t1), a1));
-    assert(equaList(sol.deleteDuplicates(t2), a2));
+    assert(equal_list(t1, t1));
+    assert(equal_list(sol.deleteDuplicates(t1), a1));
+    assert(equal_list(sol.deleteDuplicates(t2), a2));
     return 0;
 }
