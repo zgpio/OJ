@@ -92,9 +92,12 @@ int main(int argc, char *argv[])
         {"{1, 2, 3, 4, 5, 6}", false},
         {"{5, 1, 4, null, null, 3, 6}", false},
         {"{1, 1}", false},
+        {"[]", true},
         {"{1, null, 1}", false},
         {"{10, 5, 15, null, null, 6, 20}", false}};
+
     Solution s;
+    assert(s.isValidBST(nullptr) == true);
     for (auto i : cases) {
         TreeNode *t = constructT(i.first);
         for (auto x : preorderTraversal(t)) {
