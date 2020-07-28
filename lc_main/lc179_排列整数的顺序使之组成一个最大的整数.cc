@@ -31,6 +31,10 @@ int main(int argc, char *argv[])
         vector<int> v{3, 30, 34, 5, 9};
         assert(s.largestNumber(v) == "9534330");
     }
+    {
+        vector<int> v{0, 0};
+        assert(s.largestNumber(v) == "0");
+    }
 
     return 0;
 }
