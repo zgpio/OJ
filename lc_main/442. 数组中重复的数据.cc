@@ -16,7 +16,7 @@ class Solution
         }
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] - 1 != i)
-                rv.push_back(nums[i]);
+                rv.push_back(nums[i]);  // rv.push_back(i+1); // 仅替换一行即可解决 448. 找到所有数组中消失的数字
         }
         return rv;
     }
