@@ -2,39 +2,66 @@
 #include "lc/list.h"
 using namespace std;
 
-class Solution {
-public:
+// h
+// 
+// * ──▶ 3 ──▶ 1 ──▶ 2 ──▶ NIL
+// 
+// t
+// 维护tail指针, 指向小于x的链表的尾结点
+// 用head->next遍历链表
+
+class Solution
+{
+   public:
     ListNode *partition(ListNode *head, int x)
     {
-        vector<int> before, after;
-        while (head) {
-            if (head->val < x)
-                before.push_back(head->val);
-            else
-                after.push_back(head->val);
-            head = head->next;
+        ListNode hair(0);
+        hair.next = head;
+        ListNode *tail = &hair;
+        head = tail;
+        while (head->next) {
+            if (head->next->val < x) {
+                if (head == tail) {
+                    head = head->next;
+                } else {
+                    ListNode *t = head->next;
+                    head->next = t->next;
+                    t->next = tail->next;
+                    tail->next = t;
+                }
+                tail = tail->next;
+            } else
+                head = head->next;
         }
-        for (auto a : after)
-            before.push_back(a);
-        return buildList(before);
+        return hair.next;
     }
 };
 int main()
 {
     Solution sol;
-    vector<int> t1 = {1, 4, 3, 2, 5, 2};
-    int x1 = 3;
-    vector<int> a1 = {1, 2, 2, 4, 3, 5};
-    ListNode *test1 = buildList(t1);
-    ListNode *ans1 = buildList(a1);
-    ListNode *pred1 = sol.partition(test1, x1);
-    while (pred1) {
-        if (pred1->val != ans1->val) {
-            std::cout << "assert fail!" << std::endl;
-            break;
-        }
-        pred1 = pred1->next;
-        ans1 = ans1->next;
+    {
+        int x = 3;
+        ListNode *test = buildList({3, 1, 2});
+        ListNode *ans = buildList({1, 2, 3});
+        ListNode *pred = sol.partition(test, x);
+        printL(pred);
+        assert(equal_list(pred, ans));
+    }
+    {
+        int x = 3;
+        ListNode *test = buildList({1, 4, 3, 2, 5, 2});
+        ListNode *ans = buildList({1, 2, 2, 4, 3, 5});
+        ListNode *pred = sol.partition(test, x);
+        printL(pred);
+        assert(equal_list(pred, ans));
+    }
+    {
+        int x = 2;
+        ListNode *test = buildList({1, 1});
+        ListNode *ans = buildList({1, 1});
+        ListNode *pred = sol.partition(test, x);
+        printL(pred);
+        assert(equal_list(pred, ans));
     }
 
     return 0;
