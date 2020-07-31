@@ -1,4 +1,5 @@
 #include "bt.h"
+#include <cstring>
 #include <queue>
 #include <unordered_map>
 #include <iostream>
