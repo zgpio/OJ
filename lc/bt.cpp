@@ -39,7 +39,7 @@ std::string& trim(std::string &s)
 
 // "[]"
 // 列表中的元素必须是int类型或null, 用逗号分隔
-// 支持方括号/花括号
+// 支持方括号/花括号/圆括号
 TreeNode *constructT(std::string a)
 {
     std::unordered_map<int, int> m;

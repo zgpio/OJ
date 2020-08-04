@@ -1,13 +1,18 @@
 #ifndef BT_H
 #define BT_H
-#include <vector>
 #include <string>
+#include <vector>
 // Definition for a binary tree node.
 struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr)
+    {
+    }
+    TreeNode() : left(nullptr), right(nullptr)
+    {
+    }
 };
 
 TreeNode *constructT(std::string a);
