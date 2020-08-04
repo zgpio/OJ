@@ -5,6 +5,7 @@ using namespace std;
 class Solution
 {
    public:
+    // 两种情况: 1) 2个最小负数和1个最大正数; 2) 三个最大正数.
     int maximumProduct(vector<int>& nums)
     {
         int min1 = INT_MAX, min2 = INT_MAX;
@@ -29,42 +30,11 @@ class Solution
         }
         return max(min1 * min2 * max1, max1 * max2 * max3);
     }
-    // 只是为了展示大小顶堆的使用
-    int maximumProduct2(vector<int>& nums)
-    {
-        priority_queue<int> maxh;                             // 大顶堆保存最小的两个数
-        priority_queue<int, vector<int>, greater<int>> minh;  // 小顶堆保存最大的三个数
-        for (auto i : nums) {
-            if (maxh.size() < 2)
-                maxh.push(i);
-            else {
-                if (i < maxh.top()) {
-                    maxh.pop();
-                    maxh.push(i);
-                }
-            }
-            if (minh.size() < 3)
-                minh.push(i);
-            else {
-                if (i > minh.top()) {
-                    minh.pop();
-                    minh.push(i);
-                }
-            }
-        }
-        int min1 = maxh.top(); maxh.pop();
-        int min2 = maxh.top(); maxh.pop();
-        int max1 = minh.top(); minh.pop();
-        int max2 = minh.top(); minh.pop();
-        int max3 = minh.top(); minh.pop();
-        return max(min1 * min2 * max3, max1 * max2 * max3);
-    }
 };
 int main(int argc, char* argv[])
 {
     Solution s;
     vector<int> nums{1, 2, 3, 4};
     assert(s.maximumProduct(nums) == 24);
-    assert(s.maximumProduct2(nums) == 24);
     return 0;
 }
