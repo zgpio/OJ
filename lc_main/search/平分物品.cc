@@ -32,6 +32,21 @@ void dfs(int i, int A, int B)  // i是当前要分的房子的编号, A是A拿�
     dfs(i + 1, A, B + a[i]);  // 给B
 }
 
+int f(const int n, const int v[], const int sum)
+{
+    // dp[i][j] 状态定义: i件物品、价差为j时可分配的最大价值,
+    // 先初始化为负无穷, 当前物品可能分配给少的, 也可能分配给多的, 也可能扔掉, 给少的就会缩小差距(j-ai),
+    // 给多的就会增大差距(j+ai), (n,0)就是所有物品看过后, 使价差为0, 能够分配出去的最大价值, 其他就要扔掉
+    vector<vector<int>> dp(n + 1, vector<int>(sum + 1, INT_MIN));
+    dp[0][0] = 0;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= sum; j++) {
+            dp[i][j] = max({dp[i - 1][j], dp[i - 1][j + v[i - 1]] + v[i - 1], dp[i - 1][abs(j - v[i - 1])] + v[i - 1]});
+        }
+    }
+    return sum - dp[n][0];  // 扔掉的最小价值
+}
+
 int main()
 {
 #ifdef LOCAL_JUDGE
@@ -45,9 +60,14 @@ int main()
             scanf("%d", &a[i]);
             sum += a[i];
         }
-        res = 0;
-        dfs(0, 0, 0);
-        printf("%d\n", sum - res);
+        {
+            res = 0;
+            dfs(0, 0, 0);
+            printf("%d\n", sum - res);
+        }
+        {
+            std::cout << f(n, a, sum) << std::endl;
+        }
     }
     return 0;
 }
