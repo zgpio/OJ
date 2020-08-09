@@ -50,7 +50,7 @@ int f(const int n, const int v[], const int sum)
 int main()
 {
 #ifdef LOCAL_JUDGE
-    freopen("../../input/平分问题", "rt", stdin);
+    freopen("../../input/平分物品", "rt", stdin);
 #endif
     while (cin >> n) {
         if (!n)
