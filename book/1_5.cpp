@@ -61,7 +61,7 @@ double maxgap(int n, double *x)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("input/1_5", "rt", stdin);
 #endif
     int n;

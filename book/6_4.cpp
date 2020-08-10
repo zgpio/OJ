@@ -135,7 +135,7 @@ int doit(int n, int m, int d, int **w, int **c, int *future)
 }
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("./input/6_4", "rt", stdin);
 #endif
     int n, m, d;

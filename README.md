@@ -17,6 +17,7 @@ O(n!)           n < 11.
 # TODO
 
 # NOTE
+- HDU OJ 定义了 ONLINE_JUDGE 宏
 - CMakeLists.txt
     - 设置宏 LOCAL_JUDGE, 用于区分本地和ONLINE
     - 设置 CMAKE_EXPORT_COMPILE_COMMANDS 选项, 用于导出编译命令

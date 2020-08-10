@@ -13,7 +13,7 @@ const int LINE_LEN = 10000;
 const int WORD_LEN = 100;
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen ("input.txt", "rt", stdin);
 #endif
     char line[LINE_LEN];

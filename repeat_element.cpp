@@ -13,7 +13,7 @@ int comp(const void *a, const void *b)
 }
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("input.txt", "rt", stdin);
 #endif
     int n;

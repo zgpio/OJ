@@ -10,7 +10,7 @@ const int LEN = 1000000;
 int a[LEN] = {0};
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen ("input.txt", "rt", stdin);
 #endif
     int n, m;

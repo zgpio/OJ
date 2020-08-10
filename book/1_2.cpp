@@ -39,7 +39,7 @@ int ca(char a[])  // code of a
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("input/1_2", "rt", stdin);
 #endif
     int n;
