@@ -135,7 +135,7 @@ int main()
     // LFUCache obj = *new LFUCache(512);
     // ifstream in("./input/lc460");
     LFUCache obj = *new LFUCache(105);
-    ifstream in("./input/lc460_2");
+    ifstream in("./input/lc460");
     string filename;
     string line;
     int cnt = 0;
