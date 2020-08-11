@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm> // binary_search
+#include <bits/stdc++.h>
 using namespace std;
 
 //返回target在有序向量A中出现的第一个位置

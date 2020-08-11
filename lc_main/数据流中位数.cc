@@ -3,6 +3,7 @@
 #include <algorithm> // push_heap, pop_heap
 #include <cmath> // fabs
 #include <limits>
+#include <cassert>
 #include <queue> // priority_queue
 using namespace std;
 

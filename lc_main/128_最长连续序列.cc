@@ -1,6 +1,4 @@
-#include <iostream>
-#include <unordered_set>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 // 最长连续整数序列

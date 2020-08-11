@@ -1,6 +1,5 @@
 #include <lc/bt.h>
-#include <algorithm>
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution

@@ -1,6 +1,4 @@
-#include <algorithm>
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 // 对于枢纽元而言, 分为以下四种情况:

@@ -1,8 +1,5 @@
 #include "lc/bt.h"
-#include <iostream>
-#include <stack>
-#include <cassert>
-#include <climits>
+#include <bits/stdc++.h>
 using namespace std;
 
 // 中序遍历二叉搜索树可得到一个关键字的有序序列, 由小到大排序.
