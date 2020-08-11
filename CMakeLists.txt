@@ -20,7 +20,7 @@ endif()
 MESSAGE(STATUS "Target Name: ${TARGET}")
 
 # Bring the headers into the project
-# include_directories(lc)
+include_directories(lc)
 include_directories(.)
 # MESSAGE(${CMAKE_CURRENT_SOURCE_DIR})  # 当前处理的CMakeLists.txt所在的路径
 
