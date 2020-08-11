@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 #include <cstring>
 
 using std::cout;

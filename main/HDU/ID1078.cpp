@@ -35,7 +35,7 @@ int dfs(int x, int y)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("../../input/1078", "rt", stdin);
 #endif
     while (cin >> n >> k && !(n == -1 && k == -1)) {

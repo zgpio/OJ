@@ -1,14 +1,9 @@
 #include "lc/lc.h"
 using namespace std;
 
-// sort using a custom function object
-// struct {
-//     bool operator()(vector<int> a, vector<int> b) const { return a[0] < b[0];
-//     }
-// } customLess;
-
-class Solution {
-public:
+class Solution
+{
+   public:
     vector<vector<int>> merge(vector<vector<int>>& intervals)
     {
         // NOTE vector<int> 是可以直接比较的
@@ -22,9 +17,7 @@ public:
                 if (ans.back()[1] < i[0])
                     ans.push_back(i);
                 else {
-                    int s = ans.back()[0], e = max(ans.back()[1], i[1]);
-                    ans.pop_back();
-                    ans.push_back({s, e});
+                    ans.back()[1] = max(ans.back()[1], i[1]);
                 }
             }
         }
@@ -42,6 +35,9 @@ int main()
 {
     Solution sol;
 
+    // 验证vector<int>可以比较大小
+    assert((vector<int>{1, 4}) < (vector<int>{1, 5}));
+    assert((vector<int>{1, 4}) < (vector<int>{2, 4}));
     vector<vector<int>> t1 = {{1, 4}, {4, 5}};
     vector<vector<int>> a1 = {{1, 5}};
     vector<vector<int>> t2 = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};

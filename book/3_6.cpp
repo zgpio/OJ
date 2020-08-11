@@ -32,7 +32,7 @@ void print(int i, int j)
 }
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("input/3_6", "rt", stdin);
 #endif
     int n;  // 共有 n 个站点

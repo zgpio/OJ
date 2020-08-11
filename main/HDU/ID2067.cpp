@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen ("../../input/2067", "rt", stdin);
 #endif
 

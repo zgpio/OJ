@@ -15,7 +15,7 @@ bool approximatelyEqual(float a, float b, float epsilon)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("./input/1170", "rt", stdin);
 #endif
     int T;

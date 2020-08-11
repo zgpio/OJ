@@ -18,7 +18,7 @@ int subNumber(char n[], int start, int end)
 // 统计数字问题
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("./input/1_1", "rt", stdin);
 #endif
     // e.g.

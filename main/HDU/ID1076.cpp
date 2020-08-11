@@ -31,7 +31,7 @@ int leapYear(int Y)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("../../input/1076", "rt", stdin);
 #endif
     int T;

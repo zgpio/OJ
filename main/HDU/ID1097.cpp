@@ -25,7 +25,7 @@ int qpow(int A, int n, int mod)
 
 int main()
 {
-#ifndef ONLINE_JUDGE
+#ifdef LOCAL_JUDGE
     freopen("./input/1097", "rt", stdin);
 #endif
     int n, m;

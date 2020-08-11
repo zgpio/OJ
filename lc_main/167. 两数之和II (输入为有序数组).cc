@@ -2,8 +2,6 @@
 using namespace std;
 
 
-// Runtime: 8 ms, faster than 62.49% of C++ online submissions for Two Sum II - Input array is sorted.
-// Memory Usage: 9.5 MB, less than 68.70% of C++ online submissions for Two Sum II - Input array is sorted.
 class Solution {
 public:
     vector<int> twoSum(vector<int> &numbers, int target)
