@@ -1,6 +1,7 @@
 #include <lc/bt.h>
 #include <iostream>
 #include <queue>
+#include <cassert>
 using namespace std;
 /**
  * Definition for a binary tree node.

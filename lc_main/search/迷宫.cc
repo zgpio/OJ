@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <climits>
 using namespace std;
 
 struct node {

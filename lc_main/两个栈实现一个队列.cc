@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <cassert>
 using namespace std;
 template <typename QDataType>
 class Queue {

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 using namespace std;
 
 /* 完全背包问题, 求解装满背包方案数
