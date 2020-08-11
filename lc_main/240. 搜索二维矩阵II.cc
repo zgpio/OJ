@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cassert>
 using namespace std;
 
 // 左下或右上角
