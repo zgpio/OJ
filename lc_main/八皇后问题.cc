@@ -49,7 +49,7 @@ void eight_queen(int row)
             Queenes[row] = col;
             if (row == 7) {
                 Counts++;
-                print();
+                // print();
                 return;
             }
             eight_queen(row + 1);
