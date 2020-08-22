@@ -1,4 +1,5 @@
 # 输入规模与计算复杂度之间的对应关系(根据计算机算力具体分析)
+[![Build Status](https://travis-ci.org/zgpio/OJ.svg?branch=master)](https://travis-ci.org/zgpio/OJ)
 ```
 O(n)            n < 10^8.
 O(nlogn)        n < 10^6.
