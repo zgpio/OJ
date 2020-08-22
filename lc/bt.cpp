@@ -40,7 +40,7 @@ std::string& trim(std::string &s)
 // "[]"
 // 列表中的元素必须是int类型或null, 用逗号分隔
 // 支持方括号/花括号/圆括号
-TreeNode *constructT(std::string a)
+static std::unordered_map<int, int> parse_level_order(string a)
 {
     std::unordered_map<int, int> m;
     int spos = a.find_last_of("[");
@@ -61,8 +61,13 @@ TreeNode *constructT(std::string a)
         int n = atoi(s.c_str());
         m[i] = n;
     }
+    return m;
+}
 
-    const int L = i+1;
+TreeNode *constructT(std::string a)
+{
+    std::unordered_map<int, int> m = parse_level_order(a);
+    const int L = m.size() + 1;
     if (L == 0) return nullptr;
     std::queue<TreeNode *> q;
     TreeNode *T = new TreeNode(m[0]);
