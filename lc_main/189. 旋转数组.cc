@@ -58,19 +58,13 @@ int main(int argc, char* argv[])
         vector<int> v = {1, 2, 3, 4, 5, 6, 7};
         int k = 3;
         s1.rotate(v, k);
-        for (auto i : v) {
-            std::cout << i << " ";
-        }
-        std::cout << std::endl;
+        assert(v == (vector<int>{5, 6, 7, 1, 2, 3, 4}));
     }
     {
         vector<int> v = {1, 2, 3, 4, 5, 6, 7};
         int k = 3;
         s2.rotate(v, k);
-        for (auto i : v) {
-            std::cout << i << " ";
-        }
-        std::cout << std::endl;
+        assert(v == (vector<int>{5, 6, 7, 1, 2, 3, 4}));
     }
     return 0;
 }

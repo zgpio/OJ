@@ -1,8 +1,4 @@
-#include <iostream>
-#include <list>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LFU - Least Frequently Used
