@@ -1,13 +1,4 @@
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <ctime>
-#include <iostream>
-#include <map>
-#include <queue>
-#include <set>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int maxn = 303;

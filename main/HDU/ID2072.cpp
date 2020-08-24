@@ -1,13 +1,4 @@
-#include <cstdio>
-#include <stdio.h>
-#include <cstdlib>
-#include <cmath>
-#include <iostream>//其中包含了stl_algobase
-#include <algorithm>
-#include <cstring>
-#include <set>
-#include <string>
-#include <list>
+#include <bits/stdc++.h>
 using namespace std;
 const int LINE_LEN = 10000;
 const int WORD_LEN = 100;

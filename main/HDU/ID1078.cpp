@@ -1,10 +1,4 @@
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <iostream>  //其中包含了stl_algobase
-#include <list>
+#include <bits/stdc++.h>
 using namespace std;
 const int M = 102;
 // int dir[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};  // 上下左右

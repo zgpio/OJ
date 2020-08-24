@@ -1,10 +1,4 @@
-#include <cstdio>
-#include <cstdlib>
-#include <cmath>
-#include <iostream>//其中包含了stl_algobase
-#include <algorithm>
-#include <cstring>
-#include <list>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
