@@ -20,7 +20,7 @@ public:
 // 1 Linked List + 1 Set + 1 Hash
 // O(1) for all: Insert, Delete and Lookup
 class LFUCache {
-public:
+private:
     list<FreqNode *> freqNodes;
     // key   : item (key of element)
     // value : point to its parent freqNode.
