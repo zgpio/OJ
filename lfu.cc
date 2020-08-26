@@ -118,6 +118,16 @@ public:
         }
         return (*freqNodes.begin())->freq;
     }
+    void printFreq()
+    {
+        for (auto it = freqNodes.begin(); it != freqNodes.end(); it++) {
+            cout << "Freq = " << (*it)->freq << ": ";
+            for (auto iIt = (*it)->items.begin(); iIt != (*it)->items.end(); iIt++) {
+                cout << (char)*iIt << " ";
+            }
+            cout << endl;
+        }
+    }
 };
 
 // TEST Program
@@ -139,27 +149,16 @@ void generateTestData(LFUCache &lfu)
         lfu.access('c');
     }
 }
-void printFreq(LFUCache &lfu)
-{
-    for (auto it = lfu.freqNodes.begin(); it != lfu.freqNodes.end(); it++) {
-        cout << "Freq = " << (*it)->freq << ": ";
-        for (auto iIt = (*it)->items.begin(); iIt != (*it)->items.end();
-             iIt++) {
-            cout << (char)*iIt << " ";
-        }
-        cout << endl;
-    }
-}
 int main(void)
 {
     LFUCache lfu;
     generateTestData(lfu);
-    printFreq(lfu);
+    lfu.printFreq();
 
     cout << endl;
     cout << "Accessing z" << endl;
     lfu.access('z');
-    printFreq(lfu);
+    lfu.printFreq();
 
     cout << endl;
     cout << "Least Frequently Used : " << lfu.getLFUItem() << endl;
@@ -169,6 +168,6 @@ int main(void)
     cout << "Accessing z again" << endl;
     lfu.access('z');
     cout << "Query z's Freq again: " << lfu.query('z') << endl;
-    printFreq(lfu);
+    lfu.printFreq();
     return 0;
 }
