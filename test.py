@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 import os
+import unittest
+# from collections import defaultdict
+import subprocess
 from pathlib import Path
 
 project_root = Path(__file__).resolve().parents[0]
@@ -33,10 +36,21 @@ def is_contain_chinese(check_str):
     return False
 
 
+def process(cmd):
+    process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    process.wait()
+    rc = process.returncode
+    stdout = process.stdout.read()
+    process.stdout.close()
+    return rc, stdout
+
+
 def main():
     fs = walkFile(Path(project_root, 'lc_main'))
     build = Path(project_root, 'build')
+    infos = []
     for f in fs:
+        info = {'filename': f}
         cmd = f'cmake -S {project_root} -B {build} -DMAIN:STRING="{f}"'
         if is_contain_chinese(f):
             cmd += ' -DTARGET:STRING=test'
@@ -45,10 +59,24 @@ def main():
             fn = Path(f).resolve().stem
             exe = build.joinpath(fn)
 
-        os.system(cmd)
-        os.system(f'make -C {build}')
+        info['cmake'], info['cmake_stdout'] = process(cmd)
+        info['make'], info['make_stdout'] = process(f'make -C {build}')
+        infos.append(info)
         os.system(exe)
+    return infos
+
+
+class Test(unittest.TestCase):
+    def test_exe(self):
+        """
+        Test that cmake and make
+        """
+        infos = main()
+        for info in infos:
+            with self.subTest(i=info['filename']):
+                self.assertEqual(info['cmake'], 0)
+                self.assertEqual(info['make'], 0)
 
 
 if __name__ == '__main__':
-    main()
+    unittest.main()
