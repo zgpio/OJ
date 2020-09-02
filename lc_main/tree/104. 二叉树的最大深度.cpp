@@ -34,6 +34,7 @@ int main()
         {"[]", 0},
         {"[1]", 1}
     };
+    assert(constructT("[]") == NULL);
     for (auto c : cases) {
         TreeNode *t1 = constructT(c.first);
         assert(sol.maxDepth(t1) == c.second);

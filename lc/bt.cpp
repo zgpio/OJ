@@ -66,25 +66,26 @@ static std::unordered_map<int, int> parse_level_order(string a)
 
 TreeNode *constructT(std::string a)
 {
-    std::unordered_map<int, int> m = parse_level_order(a);
-    const int L = m.size() + 1;
-    if (L == 0) return nullptr;
-    std::queue<TreeNode *> q;
+    std::unordered_map<int, int> m = parse_level_order(a);  // index(0-based) -> key
+    if (m.size() == 0) return nullptr;
+
+    std::queue<std::pair<TreeNode *, int>> q;
     TreeNode *T = new TreeNode(m[0]);
-    q.push(T);
-    for (int i = 0; i * 2 + 1 < L; ++i) {
-        TreeNode *t = q.front();
+    q.push({T, 0});
+    while (!q.empty()) {
+        TreeNode *t = q.front().first;
+        int i = q.front().second;
         q.pop();
 
         auto got = m.find(i * 2 + 1);
         if (got != m.end()) {
             t->left = new TreeNode(got->second);
-            q.push(t->left);
+            q.push({t->left, i * 2 + 1});
         }
         got = m.find(i * 2 + 2);
         if (got != m.end()) {
             t->right = new TreeNode(got->second);
-            q.push(t->right);
+            q.push({t->right, i * 2 + 2});
         }
     }
     return T;
