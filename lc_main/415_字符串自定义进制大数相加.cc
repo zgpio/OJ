@@ -70,17 +70,17 @@ string subStrings(string a, string b)
 int main(int argc, char *argv[])
 {
     {
-        vector<tuple<string, string, string>> cases
+        vector<vector<string>> cases
             = {{"1234", "1245", "2479"}, {"1", "9", "10"}, {"1111236", "1245", "1112481"}, {"19236", "1245", "20481"}};
         for (auto i : cases) {
-            assert(addStrings(get<0>(i), get<1>(i)) == get<2>(i));
+            assert(addStrings(i[0], i[1]) == i[2]);
         }
     }
     {
-        vector<tuple<string, string, string>> cases
+        vector<vector<string>> cases
             = {{"1255", "1245", "10"}, {"99", "9", "90"}, {"1236", "0", "1236"}, {"11", "11", "0"}, {"100", "99", "1"}};
         for (auto i : cases) {
-            assert(subStrings(get<0>(i), get<1>(i)) == get<2>(i));
+            assert(subStrings(i[0], i[1]) == i[2]);
         }
     }
     return 0;
