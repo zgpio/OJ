@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     //    1
     //  2   3
     // 4 5 6 7
-    vector<tuple<const char *, int, int>> cases = {{"[1, 2, 3, 4, 5, 6, 7]", 2, 4}, {"[]", 2, 0}};
+    vector<tuple<string, int, int>> cases = {{string("[1, 2, 3, 4, 5, 6, 7]"), 2, 4}, {string("[]"), 2, 0}};
     for (auto c : cases) {
         TreeNode *t = constructT(std::get<0>(c));
         inorder(t);
