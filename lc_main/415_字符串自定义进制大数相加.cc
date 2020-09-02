@@ -1,8 +1,4 @@
-#include <iostream>
-#include <string>
-#include <tuple>
-#include <vector>
-#include <cassert>
+#include <bits/stdc++.h>
 using namespace std;
 
 // TODO 自定义进制相加
