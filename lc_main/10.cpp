@@ -1,61 +1,41 @@
 #include "lc/lc.h"
 using namespace std;
 
-// TODO
-class Solution {
-public:
+class Solution
+{
+   public:
     bool isMatch(string s, string p)
     {
-        char* c = new char[p.length()];
-        int* mod = new int[p.length()];
-        memset(mod, 0, sizeof(int) * p.length());
+        int m = s.size();
+        int n = p.size();
 
-        string::iterator si = s.begin(), pi = p.begin();
-        int cnt = 0;
-        while (pi != p.end()) {
-            // 断言第一个字符不是*
-            c[cnt] = *pi;
-            if (pi + 1 != p.end() && *(pi + 1) == '*') {
-                mod[cnt] = 1;
-                pi += 2;
+        auto matches = [&](int i, int j) {
+            if (i == 0) {
+                return false;
             }
-            else
-                pi++;
-            cnt++;
-        }
-        for (int i = 0; i < cnt; ++i) {
-            std::cout << c[i] << ": " << mod[i] << "  ";
-        }
-        std::cout << std::endl<<std::endl;
-        int i = 0;
-        while (si != s.end()) {
-            if (mod[i] == 0) {
-                if (c[i] == *si || c[i] == '.') {
-                    i++;
-                    si++;
+            if (p[j - 1] == '.') {
+                return true;
+            }
+            return s[i - 1] == p[j - 1];
+        };
+
+        vector<vector<int>> f(m + 1, vector<int>(n + 1));
+        f[0][0] = true;
+        for (int i = 0; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (p[j - 1] == '*') {
+                    f[i][j] |= f[i][j - 2];
+                    if (matches(i, j - 1)) {
+                        f[i][j] |= f[i - 1][j];
+                    }
+                } else {
+                    if (matches(i, j)) {
+                        f[i][j] |= f[i - 1][j - 1];
+                    }
                 }
-                else
-                    return false;
-            }
-            else {  // *模式, 策略: 匹配尽可能多的重复
-                if (c[i] == *si || c[i] == '.') {
-                    char t = *si;
-                    while (si != s.end() && (t == *(++si) || c[i] == '.') &&
-                           s.end() - si >= cnt - i)
-                        ;
-                    i++;
-                }
-                else
-                    i++;
-            }
-            if (si == s.end()) {
-                while (mod[i] != 0) i++;
             }
         }
-        if (si == s.end() && i == cnt)
-            return true;
-        else
-            return false;
+        return f[m][n];
     }
 };
 
@@ -72,6 +52,5 @@ int main()
     assert(sol.isMatch("a", "ab*") == true);
     assert(sol.isMatch("bbbba", ".*a*a") == true);
 
-    std::cout << "end" << std::endl;
     return 0;
 }
