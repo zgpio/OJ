@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     }
     {
         ListNode *l = buildList({1, 2, 3});
-        assert(s.getKthFromEnd(l, 4) == nullptr);
+        assert(s.getKthFromEnd(l, 4) == l);
     }
     return 0;
 }
