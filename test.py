@@ -61,7 +61,9 @@ def main():
 
         info['cmake'], info['cmake_stdout'] = process(cmd)
         info['make'], info['make_stdout'] = process(f'make -C {build}')
-        info['exec'], _ = process(str(exe))
+        proc = subprocess.Popen(str(exe), shell=True)
+        proc.wait()
+        info['exec'] = proc.returncode
         infos.append(info)
     return infos
 
