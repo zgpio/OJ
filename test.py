@@ -50,6 +50,7 @@ def main():
     build = Path(project_root, 'build')
     infos = []
     for f in fs:
+        print(f'[ {f} ]')
         info = {'filename': f}
         cmd = f'cmake -S {project_root} -B {build} -DMAIN:STRING="{f}"'
         if is_contain_chinese(f):

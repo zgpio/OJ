@@ -17,12 +17,6 @@ public:
         for (int j = 1; j < n; ++j) {
             if (obstacleGrid[0][j] == 0) ans[0][j] = ans[0][j - 1];
         }
-        for (auto i : ans) {
-            for (auto j : i) {
-                std::cout << j << " ";
-            }
-            std::cout << std::endl;
-        }
         for (int i = 1; i < m; ++i) {
             for (int j = 1; j < n; ++j) {
                 if (obstacleGrid[i][j] == 0)
