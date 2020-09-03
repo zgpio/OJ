@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // Runtime: 24 ms, faster than 27.91% of C++ online submissions for Single

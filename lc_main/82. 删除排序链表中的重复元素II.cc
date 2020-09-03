@@ -1,5 +1,5 @@
 #include "lc/list.h"
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 class Solution {

@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 // 数据结构与算法分析 - C语言描述
 typedef int ElementType;

@@ -1,5 +1,5 @@
 #include "lc/bt.h"
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // Runtime: 8 ms, faster than 71.73% of C++ online submissions for Binary Tree

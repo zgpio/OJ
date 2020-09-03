@@ -1,5 +1,5 @@
 #include "lc/bt.h"
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // TODO: 不适用于树中存在重复元素

@@ -1,5 +1,4 @@
-#include "lc/lc.h"
-#include <unordered_set>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Runtime: 16 ms, faster than 51.06% of C++ online submissions for Word Break.

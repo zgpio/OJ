@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 #include "lc/list.h"
 using namespace std;
 

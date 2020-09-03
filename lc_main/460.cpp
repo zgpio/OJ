@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 //#include <hash_map>
 // using namespace __gnu_cxx;

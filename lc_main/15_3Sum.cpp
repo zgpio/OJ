@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 #include "lc/util.h"
 using namespace std;
 

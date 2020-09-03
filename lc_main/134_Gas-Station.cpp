@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // Runtime: 184 ms, faster than 10.47% of C++ online submissions for Gas Station.

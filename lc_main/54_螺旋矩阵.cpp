@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // 剑指 Offer 29. 顺时针打印矩阵

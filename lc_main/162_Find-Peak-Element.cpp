@@ -1,4 +1,4 @@
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // Runtime: 8 ms, faster than 58.27% of C++ online submissions for Find Peak Element.

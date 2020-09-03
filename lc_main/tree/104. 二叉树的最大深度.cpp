@@ -1,5 +1,5 @@
 #include "lc/bt.h"
-#include "lc/lc.h"
+#include <bits/stdc++.h>
 using namespace std;
 
 // Runtime: 16 ms, faster than 46.67% of C++ online submissions for Maximum
