@@ -40,9 +40,9 @@ std::string& trim(std::string &s)
 // "[]"
 // 列表中的元素必须是int类型或null, 用逗号分隔
 // 支持方括号/花括号/圆括号
-static std::unordered_map<int, int> parse_level_order(string a)
+static vector<TreeNode *> parse_level_order(string a)
 {
-    std::unordered_map<int, int> m;
+    vector<TreeNode *> rv;
     int spos = a.find_last_of("[");
     if (spos==string::npos) spos = a.find_last_of("{");
     if (spos==string::npos) spos = a.find_last_of("(");
@@ -51,41 +51,45 @@ static std::unordered_map<int, int> parse_level_order(string a)
     if (epos==string::npos) epos = a.find_first_of(")");;
     a = a.substr(spos+1, epos-(spos+1));
     auto strs = split(a, ",");
-    int i = -1;
     for (auto &s:strs)
     {
-        i++;
         s = trim(s);
         if (s=="null")
-            continue;
-        int n = atoi(s.c_str());
-        m[i] = n;
+            rv.push_back(nullptr);
+        else {
+            int key = atoi(s.c_str());
+            rv.push_back(new TreeNode(key));
+        }
     }
-    return m;
+    return rv;
 }
 
 TreeNode *constructT(std::string a)
 {
-    std::unordered_map<int, int> m = parse_level_order(a);  // index(0-based) -> key
-    if (m.size() == 0) return nullptr;
+    vector<TreeNode *> v = parse_level_order(a);  // index(0-based) -> key
+    if (v.size() == 0) return nullptr;
 
-    std::queue<std::pair<TreeNode *, int>> q;
-    TreeNode *T = new TreeNode(m[0]);
-    q.push({T, 0});
-    while (!q.empty()) {
-        TreeNode *t = q.front().first;
-        int i = q.front().second;
+    std::queue<TreeNode *> q;
+    TreeNode *T = new TreeNode(v[0]->val);
+    q.push(T);
+    int i = 1;
+    while (!q.empty() && i < v.size()) {
+        TreeNode *t = q.front();
         q.pop();
 
-        auto got = m.find(i * 2 + 1);
-        if (got != m.end()) {
-            t->left = new TreeNode(got->second);
-            q.push({t->left, i * 2 + 1});
+        auto lc = v[i];
+        if (lc != nullptr) {
+            t->left = lc;
+            q.push(t->left);
         }
-        got = m.find(i * 2 + 2);
-        if (got != m.end()) {
-            t->right = new TreeNode(got->second);
-            q.push({t->right, i * 2 + 2});
+        i++;
+        if (i < v.size()) {
+            auto rc = v[i];
+            if (rc != nullptr) {
+                t->right = rc;
+                q.push(t->right);
+            }
+            i++;
         }
     }
     return T;
