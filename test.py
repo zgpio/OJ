@@ -61,8 +61,8 @@ def main():
 
         info['cmake'], info['cmake_stdout'] = process(cmd)
         info['make'], info['make_stdout'] = process(f'make -C {build}')
+        info['exec'], _ = process(str(exe))
         infos.append(info)
-        os.system(exe)
     return infos
 
 
@@ -76,6 +76,7 @@ class Test(unittest.TestCase):
             with self.subTest(i=info['filename']):
                 self.assertEqual(info['cmake'], 0)
                 self.assertEqual(info['make'], 0)
+                self.assertEqual(info['exec'], 0)
 
 
 if __name__ == '__main__':
