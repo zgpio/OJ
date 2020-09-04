@@ -47,6 +47,5 @@ int main()
     assert(sol.myAtoi("-91283472332") == -2147483648);
     assert(sol.myAtoi("9223372036854775808") == 2147483647);
 
-    std::cout << "end" << std::endl;
     return 0;
 }

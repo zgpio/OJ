@@ -23,7 +23,6 @@ public:
                 int sum = nums[i] + nums[j] + nums[k];
                 if (sum == 0) {
                     // find possible solution
-                    print(nums[i], nums[j], nums[k]);
                     res.push_back({nums[i], nums[j], nums[k]});
                     // move both left and right indexes
                     ++j;
@@ -52,11 +51,10 @@ int main()
 {
     Solution sol;
 
-    vector<int> t1{-1, 0, 1, 2, -1, -4};
-    vector<vector<int>> a1{{-1, 0, 1}, {-1, -1, 2}};
+    vector<int> t{-1, 0, 1, 2, -1, -4};
+    vector<vector<int>> a{{-1, -1, 2}, {-1, 0, 1}};
 
-    sol.threeSum(t1);
-    // TODO: assert
+    assert(sol.threeSum(t) == a);
 
     return 0;
 }
