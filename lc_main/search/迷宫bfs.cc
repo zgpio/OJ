@@ -1,8 +1,4 @@
-#include <algorithm>
-#include <cstdio>
-#include <cstring>
-#include <queue>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 int go[4][2] = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};  //四个方向
