@@ -82,6 +82,7 @@ vector<vector<int>> threeSum(vector<int> &num)
     return result;
 }
 
+// {{{
 // using combination method could meet <<Time Limit Exceeded>> error
 vector<vector<int>> combination(vector<int> &v, int k);
 bool isSumZero(vector<int> &v);
@@ -153,6 +154,7 @@ vector<vector<int>> combination(vector<int> &v, int k)
     }
     return result;
 }
+// }}}
 
 void printMatrix(vector<vector<int>> &matrix)
 {
