@@ -12,19 +12,19 @@ class Solution
     }
 
    private:
-    int dfs(vector<string>& arr, int childIndex, int m)
+    // 解空间树是二叉树, 每个元素只有0或1两种选择
+    int dfs(vector<string>& arr, int level, const int m)
     {
-        if (childIndex == arr.size()) {
+        if (level == arr.size()) {
             return 0;
         }
         int t = m;
-        if (isUnique(arr[childIndex], t)) {
-            int curLen = arr[childIndex].length();
-            int len1 = curLen + dfs(arr, childIndex + 1, t);
-            int len2 = dfs(arr, childIndex + 1, m);
-            return max(len1, len2);
+        if (isUnique(arr[level], t)) {
+            int len0 = dfs(arr, level + 1, m);
+            int len1 = arr[level].length() + dfs(arr, level + 1, t);
+            return max(len1, len0);
         }
-        return dfs(arr, childIndex + 1, m);
+        return dfs(arr, level + 1, m);
     }
     bool isUnique(string& s, int& t)
     {
