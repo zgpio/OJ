@@ -3,14 +3,14 @@
 #include <vector>
 ListNode *buildList(std::vector<int> a)
 {
-    ListNode *head = new ListNode(-1);
-    ListNode *tail = head;
+    ListNode head(-1);
+    ListNode *tail = &head;
     for (auto i : a) {
         ListNode *t = new ListNode(i);
         tail->next = t;
         tail = t;
     }
-    return head->next;
+    return head.next;
 }
 
 void printL(ListNode *h)
