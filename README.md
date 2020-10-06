@@ -48,4 +48,6 @@ cmake --build ~/oj/build
 # 使用clang编译器替代cl.exe
 cmake -G "NMake Makefiles"  -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++  -DCMAKE_EXPORT_COMPILE_COMMANDS=YES  -S ~/OJ -B ~/OJ/build -DMAIN:STRING=kmp.cpp
 cmake --build ~/oj/build
+
+mklink C:\Users\zgp\oj\compile_commands.json C:\Users\zgp\oj\build\compile_commands.json
 ```
