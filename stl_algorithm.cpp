@@ -12,6 +12,7 @@
 #include <unordered_map>
 #include <climits>
 #include <cfloat>
+#include <cassert>
 #include <stack>        // stack
 
 using std::vector;
